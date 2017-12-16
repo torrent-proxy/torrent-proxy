@@ -13,10 +13,10 @@
   "scripts": {
     "start": "zombiebox run",
     "test": "zombiebox build pc --config config.js",
-    "preinstall": "adb connect $npm_package_config_deviceIp && npm run uninstall",
-    "install": "adb install dist/0.0.1/android/tp-0.0.1-debug.apk",
-    "postinstall": "adb disconnect $npm_package_config_deviceIp",
-    "uninstall": "adb uninstall $npm_package_config_appId",
+    "preadb.install": "adb connect $npm_package_config_deviceIp && npm run adb.uninstall",
+    "adb.install": "adb install dist/0.0.1/android/tp-0.0.1-debug.apk",
+    "postadb.install": "adb disconnect $npm_package_config_deviceIp",
+    "adb.uninstall": "adb uninstall $npm_package_config_appId",
     "build.android": "zombiebox build android --config config.js",
     "build.pc": "zombiebox build pc --config config.js"
   }
