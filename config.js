@@ -28,7 +28,7 @@ module.exports = function(config) {
 			namespace: 'tp',
 			webViewDebug: true,
 			name: 'Torrent Player',
-			appId: $npm_package_config_appId,
+			appId: process.env.npm_package_config_appId,
 			launcherColor: '#181819',
 			useBundledHTML: true,
 			storeRelease: false,
