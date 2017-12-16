@@ -2,8 +2,8 @@
   "name": "torrent-player",
   "version": "0.0.1",
   "dependencies": {
-    "zombiebox": "0.1.28",
-    "zombiebox-extension-ui": "0.1.4",
+    "zombiebox": "^1.0.0-alpha10",
+    "zombiebox-extension-ui": "^0.5.2",
     "zombiebox-platform-android-tv": "git+ssh://git@bitbucket.org/interfaced/zombiebox-platform-android-tv.git#v2.0.3"
   },
   "scripts": {
