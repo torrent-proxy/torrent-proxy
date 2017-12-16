@@ -36,6 +36,16 @@ module.exports = function(config) {
 			useBundledHTML: true,
 			storeRelease: false,
 			resPath: path.join(__dirname, 'res')
+		},
+		compilation: {
+			flags: {
+				define: [
+					'ENVIRONMENT="debug"'
+				],
+				debug: true
+			},
+			level: 'SIMPLE',
+			formatting: 'PRETTY_PRINT'
 		}
 	};
 };

@@ -6,8 +6,6 @@ goog.require('zb.layers.CuteScene');
 /**
  */
 tp.scenes.MagnetInput = class extends zb.layers.CuteScene {
-	/**
-	 */
 	constructor() {
 		super();
 
