@@ -9,8 +9,8 @@
   "scripts": {
     "start": "zombiebox run",
     "test": "zombiebox build pc --config config.js",
+    "install": "adb install dist/0.0.1/android/tp-0.0.1-debug.apk",
     "build.android": "zombiebox build android --config config.js",
-    "build.pc": "zombiebox build pc --config config.js",
-    "start.ui": "zombiebox run"
+    "build.pc": "zombiebox build pc --config config.js"
   }
 }
