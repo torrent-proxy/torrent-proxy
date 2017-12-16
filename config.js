@@ -1,4 +1,3 @@
-const certPath = (...args) => path.join(__dirname, '..', '..', 'certification', ...args);
 const path = require('path');
 
 
@@ -33,7 +32,7 @@ module.exports = function(config) {
 			launcherColor: '#181819',
 			useBundledHTML: true,
 			storeRelease: false,
-			resPath: certPath('android', 'res')
+			resPath: path.join(__dirname, 'res')
 		}
 	};
 };
