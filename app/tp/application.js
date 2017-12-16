@@ -17,7 +17,11 @@ tp.Application = class extends tp.BaseApplication {
 	 */
 	home() {
 		this.clearHistory();
-		return this.show('home', {});
+		const homeScene = this.getLayerManager().getLayer('home');
+
+		return this.getSceneOp1ener().open(homeScene, () => {
+			// Set home scene data here
+		});
 	}
 
 	/**
