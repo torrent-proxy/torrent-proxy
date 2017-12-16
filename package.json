@@ -1,0 +1,14 @@
+{
+  "name": "torrent-player",
+  "version": "0.0.1",
+  "dependencies": {
+    "zombiebox": "0.1.28",
+    "zombiebox-extension-ui": "0.1.4"
+  },
+  "scripts": {
+    "start": "zombiebox run",
+    "test": "zombiebox build pc --config config.js --config configs/check.js",
+    "build.prod.pc": "zombiebox build pc --config config.js --config configs/prod.js",
+    "build.test.pc": "zombiebox build pc --config config.js --config configs/test.js"
+  }
+}
