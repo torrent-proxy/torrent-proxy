@@ -24,6 +24,9 @@ module.exports = function(config) {
 			'scenes',
 			'service'
 		],
+		templateLocations: [
+			path.join(__dirname, 'templates/tp/')
+		],
 		android: {
 			namespace: 'tp',
 			webViewDebug: true,
