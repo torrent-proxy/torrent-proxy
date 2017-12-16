@@ -1,5 +1,6 @@
 goog.provide('tp.Application');
 goog.require('tp.BaseApplication');
+goog.require('tp.service.Torrent');
 
 
 /**
@@ -10,6 +11,15 @@ tp.Application = class extends tp.BaseApplication {
 	constructor() {
 		zb.console.setLevel(zb.console.Level.ALL);
 		super();
+
+		/**
+		 * @type {{
+		 *      torrent: tp.service.Torrent
+		 * }}
+		 */
+		this.service = {
+			torrent: new tp.service.Torrent()
+		};
 	}
 
 	/**
