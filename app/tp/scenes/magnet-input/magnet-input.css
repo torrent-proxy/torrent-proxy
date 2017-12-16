@@ -2,5 +2,17 @@
 *******************************/
 
 .s-magnet-input {
+    background: grey;
+}
 
+.s-magnet-input .input-field {
+    position: absolute;
+    top: 200px;
+    left: 80px;
+    width: 800px;
+    height: 40px;
+}
+
+.s-magnet-input .input-field .w-zbui-div-input__input {
+    font-size: 30px;
 }
