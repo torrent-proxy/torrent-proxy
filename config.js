@@ -1,4 +1,5 @@
-var path = require('path');
+const certPath = (...args) => path.join(__dirname, '..', '..', 'certification', ...args);
+const path = require('path');
 
 
 /**
@@ -23,6 +24,16 @@ module.exports = function(config) {
 		servicesAutodetect: [
 			'scenes',
 			'service'
-		]
+		],
+		android: {
+			namespace: 'tp',
+			webViewDebug: true,
+			name: 'Torrent Player',
+			appId: 'ru.interfaced.tp',
+			launcherColor: '#181819',
+			useBundledHTML: true,
+			storeRelease: false,
+			resPath: certPath('android', 'res')
+		}
 	};
 };
