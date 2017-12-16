@@ -10,6 +10,7 @@
     "start": "zombiebox run",
     "test": "zombiebox build pc --config config.js",
     "build.android": "zombiebox build android --config config.js",
-    "build.pc": "zombiebox build pc --config config.js"
+    "build.pc": "zombiebox build pc --config config.js",
+    "start.ui": "zombiebox run"
   }
 }
