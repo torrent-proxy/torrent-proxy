@@ -14,7 +14,9 @@
   "scripts": {
     "start": "zombiebox run",
     "test": "zombiebox build pc --config config.js",
-    "preadb.install": "adb connect $npm_package_config_deviceIp && npm run adb.uninstall",
+    "preadb.install": "npm run adb.connect && npm run adb.uninstall",
+    "adb.connect": "adb connect $npm_package_config_deviceIp",
+    "adb.disconnect": "adb disconnect $npm_package_config_deviceIp",
     "adb.install": "adb install dist/0.0.1/android/tp-0.0.1-debug.apk",
     "postadb.install": "adb disconnect $npm_package_config_deviceIp",
     "adb.uninstall": "adb uninstall $npm_package_config_appId",
