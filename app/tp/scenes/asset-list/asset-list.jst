@@ -1,5 +1,12 @@
 {{$ tp.scenes.templates.assetList.assetList }}
 
-<div class="asset-list-scene">
-	<div class="asset-items-wrapper" data-export-id="{{@assets}}"></div>
+<div class="asset-list-scene container">
+	<div class="top-container">
+		<div class="logo-container"></div>
+	</div>
+	<div class="list-container" data-export-id="{{@assets}}">
+		{{% tp.widgets.DataList, {}, assetList }}
+	</div>
+	<div class="info-container">
+	</div>
 </div>

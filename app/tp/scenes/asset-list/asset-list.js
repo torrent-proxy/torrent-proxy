@@ -20,7 +20,7 @@ tp.scenes.AssetList = class extends zb.layers.CuteScene {
 
 		this._addContainerClass('s-asset-list');
 
-		// TODO: DEBUG ONLY
+		//TODO: DEBUG ONLY
 		this._addAssets([{
 			title: 123,
 			magnet: 123
@@ -45,17 +45,6 @@ tp.scenes.AssetList = class extends zb.layers.CuteScene {
 	 * @private
 	 */
 	_addAssets(assets) {
-		assets.forEach((asset) => this._addAsset(asset));
-	}
-
-	/**
-	 * @param {tp.models.Asset} asset
-	 * @private
-	 */
-	_addAsset(asset) {
-		const assetWidget = new tp.widgets.Asset(asset);
-		this.appendWidget(assetWidget);
-		this._exported.assets.appendChild(assetWidget.getContainer());
-
+		this._exported.assetList.setItems(assets);
 	}
 };

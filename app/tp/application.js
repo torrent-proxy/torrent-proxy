@@ -28,7 +28,7 @@ tp.Application = class extends tp.BaseApplication {
 	home() {
 		this.clearHistory();
 		// TODO: DEBUG ONLY
-		const homeScene = this.getLayerManager().getLayer('player');
+		const homeScene = this.getLayerManager().getLayer('asset-list');
 
 		return this.getSceneOpener().open(homeScene, () => {
 			// Set home scene data here
