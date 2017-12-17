@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "tracker-proxy": "git+ssh://git@github.com:reeFridge/tracker-proxy.git#develop"
+    "tracker-proxy": "git+ssh://git@github.com:reeFridge/tracker-proxy.git#develop",
+    "peerflix": "0.37.0"
   },
   "author": "",
   "license": "MIT",
