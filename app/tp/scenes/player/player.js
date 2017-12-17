@@ -12,6 +12,7 @@ tp.scenes.Player = class extends zb.layers.CuteScene {
 	constructor(input) {
 		super();
 
+		this._video = null;
 		/**
 		 * @type {tp.scenes.templates.player.PlayerOut}
 		 * @protected
@@ -19,6 +20,8 @@ tp.scenes.Player = class extends zb.layers.CuteScene {
 		this._exported;
 
 		this._addContainerClass('s-player');
+
+		this.activateWidget(this._exported.playPause);
 	}
 
 	beforeDOMShow() {

@@ -1,3 +1,10 @@
 {{$ tp.scenes.templates.player.player }}
 
-<div class="player-scene"></div>
+<div class="player-scene">
+	<div class="s-player-control__wrap">
+		<div class="s-player-control__item _rew" data-component="{{% zb.ui.Button, {}, rew }}"></div>
+		<div class="s-player-control__item _pause" data-component="{{% zb.ui.PlayerPlayPause, {}, playPause }}"></div>
+		<div class="s-player-control__item _ff" data-component="{{% zb.ui.Button, {}, ff }}"></div>
+		<div class="s-player-control__item _full-screen" data-component="{{% zb.ui.Button, {}, fullscreen }}"></div>
+	</div>
+</div>

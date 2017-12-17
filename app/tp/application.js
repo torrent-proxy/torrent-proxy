@@ -27,7 +27,8 @@ tp.Application = class extends tp.BaseApplication {
 	 */
 	home() {
 		this.clearHistory();
-		const homeScene = this.getLayerManager().getLayer('magnet-input');
+		// TODO: DEBUG ONLY
+		const homeScene = this.getLayerManager().getLayer('player');
 
 		return this.getSceneOpener().open(homeScene, () => {
 			// Set home scene data here
