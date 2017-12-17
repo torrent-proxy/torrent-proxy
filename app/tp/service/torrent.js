@@ -17,7 +17,7 @@ tp.service.Torrent = class {
 
 	/**
 	 * @param {string} query
-	 * @return {Promise<tp.models>}
+	 * @return {Promise<Array<tp.models.Asset>>}
 	 * @override
 	 */
 	search(query) {

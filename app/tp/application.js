@@ -1,6 +1,7 @@
 goog.provide('tp.Application');
 goog.require('tp.BaseApplication');
 goog.require('tp.service.Torrent');
+goog.require('tp.backend.config');
 
 
 /**
@@ -18,7 +19,7 @@ tp.Application = class extends tp.BaseApplication {
 		 * }}
 		 */
 		this.service = {
-			torrent: new tp.service.Torrent()
+			torrent: new tp.service.Torrent('http://' + tp.backend.config.api.ip + ':' + tp.backend.config.api.port + '/')
 		};
 	}
 
@@ -29,10 +30,19 @@ tp.Application = class extends tp.BaseApplication {
 		this.clearHistory();
 		// TODO: DEBUG ONLY
 		const homeScene = this.getLayerManager().getLayer('asset-list');
-
-		return this.getSceneOpener().open(homeScene, () => {
-			// Set home scene data here
-		});
+		return this.service.torrent.search('ubuntu')
+			.then((items) => {
+				if (!items.length) {
+					return;
+				}
+				const item = items[0];
+				return this.service.torrent.load(item.magnet);
+			})
+			.then((url) => {
+				return this.getSceneOpener().open(homeScene, () => {
+					return url;
+				});
+			});
 	}
 
 	/**
