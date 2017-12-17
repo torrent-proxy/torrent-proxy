@@ -29,19 +29,11 @@ tp.Application = class extends tp.BaseApplication {
 	home() {
 		this.clearHistory();
 		// TODO: DEBUG ONLY
-		const homeScene = this.getLayerManager().getLayer('player');
-		return this.service.torrent
-			.search('2004.DVD-RIP')
-			.then((items) => {
-				if (!items.length) {
-					return;
-				}
-				const item = items[0];
-				return this.service.torrent.load(item);
-			})
-			.then((url) => {
-				return homeScene.play(url);
-			});
+		const homeScene = this.getLayerManager().getLayer('asset-list');
+
+        this.getSceneOpener().open(homeScene, () => {
+            return;
+        });
 	}
 
 	/**
