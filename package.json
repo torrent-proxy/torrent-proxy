@@ -21,6 +21,7 @@
     "postadb.install": "adb disconnect $npm_package_config_deviceIp",
     "adb.uninstall": "adb uninstall $npm_package_config_appId",
     "build.android": "zombiebox build android --config config.js",
-    "build.pc": "zombiebox build pc --config config.js"
+    "build.pc": "zombiebox build pc --config config.js",
+    "start.torrent-proxy": "node companions/torrent-proxy-server/index.js"
   }
 }
