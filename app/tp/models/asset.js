@@ -18,7 +18,7 @@ tp.models.Asset = class {
 		/** @type {string} */
 		this.title = data['title'];
 		/** @type {string} */
-		this.id = data['id'];
+		this.magnet = data['magnet'];
 	}
 
 	/**
