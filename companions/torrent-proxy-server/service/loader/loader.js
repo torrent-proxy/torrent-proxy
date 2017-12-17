@@ -1,5 +1,8 @@
 const { adapters, Manager } = require('tracker-proxy');
 const { spawn } = require('child_process');
+const path = require('path');
+const os = require('os');
+
 
 class TorrentProxyServer {
 	constructor() {
@@ -11,7 +14,7 @@ class TorrentProxyServer {
 	}
 
 	/**
-	 * @params {string} query
+	 * @param {string} query
 	 * @return {Promise<>}
 	 */
 	search(query) {
@@ -40,7 +43,6 @@ class TorrentProxyServer {
 	 * @return {Promise}
 	 */
 	load(magnet) {
-		const path = require('path');
 		const localIP = this._getLocalIP();
 		const port = '8888';
 		const peerflixBin = path.join(__dirname, '..', '..', 'node_modules', '.bin', 'peerflix');
@@ -77,7 +79,6 @@ class TorrentProxyServer {
 	 * @private
 	 */
 	_getLocalIP() {
-		const os = require('os');
 		const ifaces = os.networkInterfaces();
 
 		let ip = '127.0.0.1';
