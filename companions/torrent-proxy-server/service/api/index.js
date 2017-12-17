@@ -9,8 +9,7 @@ module.exports = class API {
 	/**
 	 * @param {Object} config
 	 * @param {{
-	 *      torrentLoader: Object,
-	 *      torrentApi
+	 *      torrentProxy: TorrentProxy
 	 * }} deps
 	 */
 	constructor(config, deps) {
@@ -30,7 +29,7 @@ module.exports = class API {
 		 * @type {Router}
 		 * @private
 		 */
-		this._routes = new Routes(this._app);
+		this._routes = new Routes(this._app, deps.torrentProxy);
 
 		this._app.on('error', () => this._init());
 		this._init();

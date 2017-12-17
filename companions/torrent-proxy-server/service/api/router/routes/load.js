@@ -7,8 +7,8 @@
 module.exports = (torrentLoader) => {
 	return {
 		get: function(incomingMessage, res) {
-			return torrentLoader.load(incomingMessage.params.id);
-
+			return torrentLoader.load(incomingMessage.originalUrl.substr('/load/'.length))
+				.then((url) => res.send(url), (err) => res.send(err));
 		}
 	};
 };

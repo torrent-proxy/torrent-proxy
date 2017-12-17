@@ -1,11 +1,16 @@
 const { adapters, Manager } = require('tracker-proxy');
-const { spawn } = require('child_process');
+const childProcess = require('child_process');
 const path = require('path');
-const os = require('os');
 
 
 class TorrentProxyServer {
-	constructor() {
+	constructor(config) {
+		/**
+		 * @type {Object}
+		 * @private
+		 */
+		this._config = config;
+
 		const manager = new Manager();
 		manager.include(new adapters.TPB());
 
@@ -43,22 +48,26 @@ class TorrentProxyServer {
 	 * @return {Promise}
 	 */
 	load(magnet) {
-		const localIP = this._getLocalIP();
-		const port = '8888';
-		const peerflixBin = path.join(__dirname, '..', '..', 'node_modules', '.bin', 'peerflix');
-		this._peerflix = spawn(peerflixBin, ['--hostname', localIP, '--port', port, magnet]);
-
 		return new Promise((resolve, reject) => {
+			const localIP = this._config.ip;
+			const port = this._config.port;
+			const peerflixBin = path.join(__dirname, '..', '..', 'node_modules', '.bin', 'peerflix');
+			this._peerflix = childProcess.spawn(peerflixBin, ['--hostname', localIP, '--port', port, magnet]);
+
+			let resolved = false;
+
 			this._peerflix.stdout.on('data', () => {
-			   resolve({
-				   hostname: localIP,
-				   port: port,
-				   url: 'http://' + localIP + ':' + port
-			   });
+				if (!resolved) {
+					return;
+				}
+				resolved = true;
+				resolve('http://' + localIP + ':' + port);
 			});
 
-			this._peerflix.stderr.on('data', (data) => {
-			   reject(data);
+			this._peerflix.stderr.on('data', (err) => {
+				if (err) {
+					reject(err);
+				}
 			});
 		});
 	}
@@ -72,29 +81,6 @@ class TorrentProxyServer {
 		}
 
 		this._peerlix.kill('SIGTERM');
-	}
-
-	/**
-	 * @return {string}
-	 * @private
-	 */
-	_getLocalIP() {
-		const ifaces = os.networkInterfaces();
-
-		let ip = '127.0.0.1';
-		Object.keys(ifaces).forEach((ifname) => {
-			ifaces[ifname].forEach((iface) => {
-				if ('IPv4' !== iface.family || iface.internal !== false) {
-					return;
-				}
-
-				if (iface.address) {
-					ip = iface.address;
-				}
-			});
-		});
-
-		return ip;
 	}
 }
 

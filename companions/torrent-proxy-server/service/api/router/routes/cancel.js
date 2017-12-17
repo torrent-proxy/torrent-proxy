@@ -7,8 +7,8 @@
 module.exports = (torrentLoader) => {
 	return {
 		get: function(incomingMessage, res) {
-			return torrentLoader.cancel();
-
+			return torrentLoader.cancel()
+				.then((collection) => res.send(collection), (err) => res.send(err));
 		}
 	};
 };

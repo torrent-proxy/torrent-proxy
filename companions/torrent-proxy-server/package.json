@@ -8,11 +8,9 @@
   },
   "dependencies": {
     "tracker-proxy": "git+ssh://git@github.com:reeFridge/tracker-proxy.git#develop",
-    "peerflix": "0.37.0"
+    "peerflix": "0.37.0",
+    "express": "^4.16.2"
   },
   "author": "",
-  "license": "MIT",
-  "dependencies": {
-    "express": "^4.16.2"
-  }
+  "license": "MIT"
 }

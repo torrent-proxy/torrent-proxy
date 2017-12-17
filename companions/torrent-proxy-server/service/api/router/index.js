@@ -9,12 +9,11 @@ const search = require('./routes/search');
 module.exports = class Router {
 	/**
 	 * @param {Object} expressApp
-	 * @param {Object} torrentLoader
-	 * @param {Object} torrentApi
+	 * @param {Object} torrentProxy
 	 */
-	constructor(expressApp, torrentLoader, torrentApi) {
-		expressApp.get('/load/:magnet', (...args) => load(torrentLoader).get(...args));
-		expressApp.get('/search/:query', (...args) => search(torrentApi).get(...args));
-		expressApp.get('/cancel/:magnet', (...args) => cancel(torrentLoader).get(...args));
+	constructor(expressApp, torrentProxy) {
+		expressApp.get('/load/:magnet', (...args) => load(torrentProxy).get(...args));
+		expressApp.get('/search/:query', (...args) => search(torrentProxy).get(...args));
+		expressApp.get('/cancel/:magnet', (...args) => cancel(torrentProxy).get(...args));
 	};
 };
