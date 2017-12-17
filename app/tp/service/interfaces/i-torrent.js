@@ -1,4 +1,5 @@
 goog.provide('tp.service.ITorrent');
+goog.require('tp.models.Asset');
 
 
 
@@ -7,14 +8,19 @@ goog.provide('tp.service.ITorrent');
  */
 tp.service.ITorrent = class {
 	/**
-	 * @param {string} magnet
-	 * @return {Promise<TorrentFile>}
+	 * @param {string} query
+	 * @return {Promise<Array<tp.models.Asset>>}
 	 */
-	load(magnet) {}
+	search(query) {}
 
 	/**
-	 * @param {string|TorrentFile} magnetOrTorrentFile
-	 * @return {Promise<undefined>}
+	 * @param {tp.models.Asset} asset
+	 * @return {Promise<string>}
 	 */
-	cancel(magnetOrTorrentFile) {}
+	load(asset) {}
+
+	/**
+	 * @param {tp.models.Asset} asset
+	 */
+	cancel(asset) {}
 }
