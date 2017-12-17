@@ -48,28 +48,31 @@ class TorrentProxyServer {
 	 * @return {Promise}
 	 */
 	load(magnet) {
-		return new Promise((resolve, reject) => {
-			const localIP = this._config.ip;
-			const port = this._config.port;
-			const peerflixBin = path.join(__dirname, '..', '..', 'node_modules', '.bin', 'peerflix');
-			this._peerflix = childProcess.spawn(peerflixBin, ['--hostname', localIP, '--port', port, magnet]);
+		return this.cancel()
+			.then(() => {
+				return new Promise((resolve, reject) => {
+					const localIP = this._config.ip;
+					const port = this._config.port;
+					const peerflixBin = path.join(__dirname, '..', '..', 'node_modules', '.bin', 'peerflix');
+					this._peerflix = childProcess.spawn(peerflixBin, ['--hostname', localIP, '--port', port, magnet]);
 
-			let resolved = false;
+					let resolved = false;
 
-			this._peerflix.stdout.on('data', () => {
-				if (resolved) {
-					return;
-				}
-				resolved = true;
-				resolve('http://' + localIP + ':' + port);
+					this._peerflix.stdout.on('data', () => {
+						if (resolved) {
+							return;
+						}
+						resolved = true;
+						resolve('http://' + localIP + ':' + port);
+					});
+
+					this._peerflix.stderr.on('data', (err) => {
+						if (err) {
+							reject(err);
+						}
+					});
+				});
 			});
-
-			this._peerflix.stderr.on('data', (err) => {
-				if (err) {
-					reject(err);
-				}
-			});
-		});
 	}
 
 	/**
@@ -77,7 +80,7 @@ class TorrentProxyServer {
 	 */
 	cancel() {
 		if (!this._peerflix) {
-			return;
+			return Promise.resolve();
 		}
 
 		this._peerflix.kill('SIGTERM');
