@@ -15,7 +15,7 @@ class TorrentProxyServer {
 		manager.include(new adapters.TPB());
 
 		this._trackerManager = manager;
-		this._peerlix = null;
+		this._peerflix = null;
 	}
 
 	/**
@@ -57,7 +57,7 @@ class TorrentProxyServer {
 			let resolved = false;
 
 			this._peerflix.stdout.on('data', () => {
-				if (!resolved) {
+				if (resolved) {
 					return;
 				}
 				resolved = true;
@@ -73,14 +73,15 @@ class TorrentProxyServer {
 	}
 
 	/**
-	 * @return {void}
+	 * @return {Promise<undefined>}
 	 */
 	cancel() {
-		if (!this._peerlix) {
+		if (!this._peerflix) {
 			return;
 		}
 
-		this._peerlix.kill('SIGTERM');
+		this._peerflix.kill('SIGTERM');
+		return Promise.resolve();
 	}
 }
 

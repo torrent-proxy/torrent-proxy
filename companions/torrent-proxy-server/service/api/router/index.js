@@ -14,6 +14,6 @@ module.exports = class Router {
 	constructor(expressApp, torrentProxy) {
 		expressApp.get('/load/:magnet', (...args) => load(torrentProxy).get(...args));
 		expressApp.get('/search/:query', (...args) => search(torrentProxy).get(...args));
-		expressApp.get('/cancel/:magnet', (...args) => cancel(torrentProxy).get(...args));
+		expressApp.get('/cancel/', (...args) => cancel(torrentProxy).get(...args));
 	};
 };
