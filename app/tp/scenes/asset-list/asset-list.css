@@ -2,5 +2,9 @@
 *******************************/
 
 .s-asset-list {
+    background: black;
+}
 
+.asset-list-scene {
+    background: black;
 }

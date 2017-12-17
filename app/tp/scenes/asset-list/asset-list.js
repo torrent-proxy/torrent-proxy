@@ -20,17 +20,16 @@ tp.scenes.AssetList = class extends zb.layers.CuteScene {
 
 		this._addContainerClass('s-asset-list');
 
-		//TODO: DEBUG ONLY
-		this._addAssets([{
-			title: 123,
-			magnet: 123
-		}, {
-			title: 123,
-			magnet: 123
-		}, {
-			title: 123,
-			magnet: 123
-		}]);
+		app.service.torrent.search('mp4').then((assets) => {
+			this._addAssets(assets);
+		});
+
+        this._exported.assetList.on(this._exported.assetList.EVENT_ACTIVATED_ITEM_CLICK, (event, item) => {
+        	app.service.torrent.load(item).then((url) => {
+                var player = app.getLayerManager().getLayer('player');
+                player.play(url);
+			});
+        });
 	}
 
 	/**
