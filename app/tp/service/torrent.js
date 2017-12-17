@@ -30,10 +30,9 @@ tp.service.Torrent = class {
 	 * @override
 	 */
 	load(asset) {
-		return fetch(this._torrentProxyUrl + 'load/' + asset.id)
-			.then((response) => response.json())
-			.then((result) => {
-				return result['url'];
+		return fetch(this._torrentProxyUrl + 'load/' + asset.magnet)
+			.then((response) => {
+				return response.text();
 			});
 	}
 
@@ -41,7 +40,7 @@ tp.service.Torrent = class {
 	 * @override
 	 */
 	cancel(asset) {
-		return fetch(this._torrentProxyUrl + 'cancel/' + asset.id)
+		return fetch(this._torrentProxyUrl + 'cancel/' + asset.magnet)
 			.then((response) => response.json())
 			.then((result) => result['success']);
 	}

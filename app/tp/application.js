@@ -29,14 +29,14 @@ tp.Application = class extends tp.BaseApplication {
 	home() {
 		this.clearHistory();
 		// TODO: DEBUG ONLY
-		const homeScene = this.getLayerManager().getLayer('asset-list');
-		return this.service.torrent.search('ubuntu')
+		const homeScene = this.getLayerManager().getLayer('player');
+		return this.service.torrent.search('mp4')
 			.then((items) => {
 				if (!items.length) {
 					return;
 				}
 				const item = items[0];
-				return this.service.torrent.load(item.magnet);
+				return this.service.torrent.load(item);
 			})
 			.then((url) => {
 				return this.getSceneOpener().open(homeScene, () => {
