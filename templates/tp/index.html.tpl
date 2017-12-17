@@ -4,7 +4,6 @@
 	<title>ZombieBox</title>
 	<meta charset="utf-8">
 	<script>CLOSURE_NO_DEPS=true;</script>
-	<script src="https://cdn.jsdelivr.net/webtorrent/latest/webtorrent.min.js"></script>
 
 	<!-- styles -->
 	<% if (styles.length) {
