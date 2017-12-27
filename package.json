@@ -1,27 +1,17 @@
 {
-  "name": "torrent-player",
-  "version": "0.0.1",
-  "dependencies": {
-    "sharp": "^0.18.4",
-    "zombiebox": "^1.0.0-alpha10",
-    "zombiebox-extension-ui": "^0.5.2",
-    "zombiebox-platform-android-tv": "git+ssh://git@bitbucket.org/interfaced/zombiebox-platform-android-tv.git#v2.0.3"
-  },
-  "config": {
-    "deviceIp": "192.168.1.251",
-    "appId": "ru.interfaced.tp"
-  },
+  "name": "torrent-proxy-server",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "start": "zombiebox run",
-    "test": "zombiebox build pc --config config.js",
-    "preadb.install": "npm run adb.connect && npm run adb.uninstall",
-    "adb.connect": "adb connect $npm_package_config_deviceIp",
-    "adb.disconnect": "adb disconnect $npm_package_config_deviceIp",
-    "adb.install": "adb install dist/0.0.1/android/tp-0.0.1-debug.apk",
-    "postadb.install": "adb disconnect $npm_package_config_deviceIp",
-    "adb.uninstall": "adb uninstall $npm_package_config_appId",
-    "build.android": "zombiebox build android --config config.js",
-    "build.pc": "zombiebox build pc --config config.js",
-    "start.torrent-proxy": "node companions/torrent-proxy-server/index.js"
-  }
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start.torrent-proxy": "node src/index.js"
+  },
+  "dependencies": {
+    "tracker-proxy": "git+ssh://git@github.com:reeFridge/tracker-proxy.git#develop",
+    "peerflix": "0.37.0",
+    "express": "^4.16.2"
+  },
+  "author": "",
+  "license": "MIT"
 }

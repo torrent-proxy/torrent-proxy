@@ -1,5 +1,2 @@
-.code-cache/*
 .idea/
-dist/*
-!dist/.hidden
 node_modules/

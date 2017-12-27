@@ -1,51 +1,10 @@
-const path = require('path');
-
-
-/**
- * @param {Object} config
- * @return {Object}
- */
-module.exports = function(config) {
-	return {
-		appNamespace: 'tp',
-		scripts: [
-			// 'script.js'
-		],
-		styles: [
-			//'myStyle.css'
-		],
-		modules: [
-			//'some-nodejs-zb-module'
-		],
-		services: {
-			// manual services config
-		},
-		servicesAutodetect: [
-			'scenes',
-			'service'
-		],
-		templateLocations: [
-			path.join(__dirname, 'templates/tp/')
-		],
-		android: {
-			namespace: 'tp',
-			webViewDebug: true,
-			name: 'Torrent Player',
-			appId: process.env.npm_package_config_appId,
-			launcherColor: '#181819',
-			useBundledHTML: true,
-			storeRelease: false,
-			resPath: path.join(__dirname, 'res')
-		},
-		compilation: {
-			flags: {
-				define: [
-					'ENVIRONMENT="debug"'
-				],
-				debug: true
-			},
-			level: 'SIMPLE',
-			formatting: 'PRETTY_PRINT'
-		}
-	};
+module.exports = {
+	api: {
+		ip: '192.168.1.41',
+		port: 8811
+	},
+	torrentServer: {
+		ip: '192.168.1.41',
+		port: 8888
+	}
 };
