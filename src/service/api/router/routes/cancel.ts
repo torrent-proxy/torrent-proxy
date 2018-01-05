@@ -1,10 +1,7 @@
-/**
- * @param {Object} torrentLoader
- * @return {{
- *      get: function(): Promise
- * }}
- */
-module.exports = (torrentLoader) => {
+import TorrentProxyServer from '../../../loader';
+import IRoute from './i-route';
+
+export default (torrentLoader: TorrentProxyServer): IRoute => {
 	return {
 		get: function(incomingMessage, res) {
 			return torrentLoader.cancel()

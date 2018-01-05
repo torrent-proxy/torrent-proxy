@@ -5,7 +5,14 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start.torrent-proxy": "node src/index.js"
+    "clean": "rm -rf ./lib",
+
+    "prebuild": "npm run clean",
+    "build": "tsc",
+
+    "prestart": "npm run build",
+    "start": "node ./lib/src/"
+
   },
   "dependencies": {
     "tracker-proxy": "git+ssh://git@github.com:reeFridge/tracker-proxy.git#develop",
@@ -13,5 +20,10 @@
     "express": "^4.16.2"
   },
   "author": "",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@types/express": "^4.11.0",
+    "@types/node": "^8.5.2",
+    "typescript": "^2.6.2"
+  }
 }
