@@ -1,15 +1,13 @@
-# torrent-player
+# torrent-proxy
 
-Smart-TV приложение для просмотра видео по magnet-ссылке, _без предварительного скачивания_.
+API предоставляющее возможность скачивать торренты там, где это не возможно из-за ограничений платформы или провайдера.
 
-## Целевые платформы:
+## Фунцкционал:
 
-* AndroidTV
-
-## Базовая функциональность
-
-* Приложение содержит поле для ввода magnet-ссылки.
-* Ссылка может быть введена вручную, передана через расширение для браузера
-* После ввода магнета открывается плеер и начинается воспроизведение.
-* Кнопки pause/play останавливают/воссатанвливают воспроизведение.
-* Конпка back возвращает к вводу магнета. 
+- [x] Скачивать торренты по magnet-ссылке отдаваю ссылку на файл/директорию
+- [x] Осуществлять поиск по популярным торрент-трекерам
+- [ ] Предоствалять более широкий API для взаимодействия с торрент-трекерами
+-  - [ ] getCategoryList(): {id: string, title: string, coverUrl: string}[]
+-  - [ ] getVideoList(category: {id: string, title: string, coverUrl: string}): {id: string, title: string, corevUrl: string, duration: number, views: number}[]
+-  - [ ] getPopularVideoList(): {id: string, title: string, coverUrl: string}): {id: string, title: string, corevUrl: string, duration: number, views: number}[]
+-  - [ ] getVideoUrl(video: {id: string, title: string, coverUrl: string}): {id: string, title: string, corevUrl: string, duration: number, views: number}): string
