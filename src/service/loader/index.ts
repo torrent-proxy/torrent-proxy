@@ -1,6 +1,5 @@
 import { ChildProcess } from 'child_process';
 import { adapters, Manager } from 'tracker-proxy';
-import { join as pathJoin } from 'path';
 import { spawn } from 'child_process';
 
 export default class TorrentProxyServer {
@@ -38,13 +37,11 @@ export default class TorrentProxyServer {
 	}
 
 	load(magnet: string): Promise<string> {
-		console.log(magnet)
 		return new Promise((resolve, reject) => {
 			return this.cancel()
 				.then(() => {
 					const localIP = this.config.ip;
 					const port = this.config.port;
-					const peerflixBin = pathJoin('peerflix');
 					this.peerflix = spawn('peerflix', ['--hostname', localIP, '--port', port, magnet]);
 					this.peerflix.on('error', (err) => reject(err));
 
