@@ -1,19 +1,20 @@
 import Routes from './router';
 import * as express from 'express';
 import { EventEmitter } from 'events';
-import TorrentProxyServer from "../loader";
+import TorrentProxyServer from '../loader';
+import PopcornTimeApi from '../external-api/popcorn-time';
 
 export default class API extends EventEmitter{
 	private app: express.Application;
 	private config: any;
 	private routes: Routes;
 
-	constructor(config: any, deps: {torrentProxy: TorrentProxyServer}) {
+	constructor(config: any, deps: {torrentProxy: TorrentProxyServer, popcornTimeApi: PopcornTimeApi}) {
 		super();
 
 		this.app = express();
 		this.config = config;
-		this.routes = new Routes(this.app, deps.torrentProxy);
+		this.routes = new Routes(this.app, deps.torrentProxy, deps.popcornTimeApi);
 
 		// TODO: Find method use on/off methods
 		// this.app.on('error', () => this._init());

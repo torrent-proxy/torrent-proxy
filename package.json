@@ -6,18 +6,16 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "rm -rf ./lib",
-
     "prebuild": "npm run clean",
     "build": "tsc",
-
     "prestart": "npm run build",
     "start": "node ./lib/src/"
-
   },
   "dependencies": {
-    "tracker-proxy": "git+ssh://git@github.com:reeFridge/tracker-proxy.git#develop",
+    "express": "^4.16.2",
+    "node-fetch": "^1.7.3",
     "peerflix": "0.37.0",
-    "express": "^4.16.2"
+    "tracker-proxy": "git+ssh://git@github.com:reeFridge/tracker-proxy.git#develop"
   },
   "author": "",
   "license": "MIT",
