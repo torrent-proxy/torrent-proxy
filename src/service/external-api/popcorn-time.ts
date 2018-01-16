@@ -1,4 +1,4 @@
-import {IExternalApi, ICategory, IVideo} from '../i-external-api';
+import {IExternalApi, ICategory, IVideo} from './i-external-api';
 
 export default class PopcornTime implements IExternalApi {
 	private apiUrl: string;
