@@ -10,12 +10,6 @@ export default class Router {
 		expressApp.get('/load/:magnet', (...args) => load(torrentProxy).get(...args));
 		expressApp.get('/search/:query', (...args) => search(torrentProxy).get(...args));
 		expressApp.get('/cancel/', (...args) => cancel(torrentProxy).get(...args));
-
-		expressApp.get('/animes/', (incomingMessage, res) => popcornTimeRoute(popcornTimeApi).get(incomingMessage, res));
-		expressApp.get('/anime/:id', (incomingMessage, res) => popcornTimeRoute(popcornTimeApi).get(incomingMessage, res));
-		expressApp.get('/movies/', (incomingMessage, res) => popcornTimeRoute(popcornTimeApi).get(incomingMessage, res));
-		expressApp.get('/movie/:id', (incomingMessage, res) => popcornTimeRoute(popcornTimeApi).get(incomingMessage, res));
-		expressApp.get('/shows/', (incomingMessage, res) => popcornTimeRoute(popcornTimeApi).get(incomingMessage, res));
-		expressApp.get('/show/:id', (incomingMessage, res) => popcornTimeRoute(popcornTimeApi).get(incomingMessage, res));
+		expressApp.get('/tpa/*', (incomingMessage, res) => popcornTimeRoute(popcornTimeApi).get(incomingMessage, res));
 	};
 };

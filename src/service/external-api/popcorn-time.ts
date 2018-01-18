@@ -9,8 +9,6 @@ export default class PopcornTime implements IProxy {
 	}
 
 	proxy(url: string): Promise<any> {
-		console.log(url);
-
 		return this.transport.request(url)
 			.catch((err) => {
 				console.error(err);
