@@ -1,62 +1,20 @@
-import {IExternalApi, ICategory, IVideo} from './i-external-api';
+import Transport from '../api/transport';
+import IProxy from './i-proxy';
 
-export default class PopcornTime implements IExternalApi {
-	private apiUrl: string;
-	private categories: ICategory[];
+export default class PopcornTime implements IProxy {
+	private transport: Transport;
 
-	constructor(apiUrl) {
-		this.apiUrl = apiUrl;
-		this.categories = this.createCategories();
+	constructor(transport) {
+		this.transport = transport;
 	}
 
-	getCategories(): Promise<ICategory[]> {
-		return new Promise((resolve, reject) => {
-			resolve(this.categories);
-		});
-	}
+	proxy(url: string): Promise<any> {
+		console.log(url);
 
-	getVideos(categoryId) {
-		return fetch(this.apiUrl + categoryId + '/1')
-			.then((response) => response.json())
-			.then((videos) => videos.map((video) => this.makeVideo(video)))
+		return this.transport.request(url)
 			.catch((err) => {
+				console.error(err);
 				throw err;
 			});
-	}
-
-	getVideo(imdbId) {
-		return fetch(this.apiUrl + 'movie/' + imdbId)
-			.then((response) => response.json())
-			.then((video: IRAWVideo) => this.makeVideo(video))
-			.catch((err) => {
-				throw err;
-			});
-	}
-
-	private makeVideo(rawVideo: IRAWVideo): IVideo {
-		return {
-			id: rawVideo.imdb_id,
-			title: rawVideo.title,
-			cover: rawVideo.images.banner,
-			// TODO: Нужно решить что делать с этими параметрами
-			duration: 0,
-			views: 0
-		};
-	}
-
-	private createCategories(): ICategory[] {
-		return ['Anime', 'Movie', 'Show'].map((title, i) => ({
-			id: title.toLocaleLowerCase() + 's',
-			title: title,
-			cover: ''// TODO: Add default pictures?
-		}));
-	}
-}
-
-interface IRAWVideo {
-	imdb_id: string,
-	title: string,
-	images: {
-		banner: string
 	}
 }

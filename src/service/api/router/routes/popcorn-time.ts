@@ -1,27 +1,12 @@
-import PopcornTime from '../../../external-api/popcorn-time';
+import IProxy from '../../../external-api/i-proxy';
 
-export default (popcornTimeApi: PopcornTime) => {
+export default (popcornTimeApi: IProxy) => {
 	return {
-        categories: {
-			get: (incomingMessage, res) => {
-				return popcornTimeApi.getCategories()
-					.then((categories) => res.send(categories))
-					.catch((err) => res.send(err));
-			}
-		},
-		videos: {
-			get: (incomingMessage, res) => {
-                return popcornTimeApi.getVideos(incomingMessage.params.categoryId)
-                    .then((categories) => res.send(categories))
-                    .catch((err) => res.send(err));
-			}
-		},
-		video: {
-			get: (incomingMessage, res) => {
-                return popcornTimeApi.getVideo(incomingMessage.params.id)
-                    .then((categories) => res.send(categories))
-                    .catch((err) => res.send(err));
-			}
+		get: (incomingMessage, res) => {
+			console.log(incomingMessage.originalUrl);
+			return popcornTimeApi.proxy(incomingMessage.originalUrl)
+				.then((response) => res.send(response))
+				.catch((err) => res.send(err));
 		}
 	}
 }

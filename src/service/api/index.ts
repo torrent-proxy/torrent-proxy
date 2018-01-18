@@ -4,7 +4,7 @@ import { EventEmitter } from 'events';
 import TorrentProxyServer from '../loader';
 import PopcornTimeApi from '../external-api/popcorn-time';
 
-export default class API extends EventEmitter{
+export default class API extends EventEmitter {
 	private app: express.Application;
 	private config: any;
 	private routes: Routes;
