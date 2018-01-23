@@ -4,7 +4,7 @@ import TorrentProxy from './service/loader';
 import Transport from './service/api/transport';
 import config from '../config';
 
-const popcornTimeTransport = new Transport('https://tv-v2.api-fetch.website/');
+const popcornTimeTransport = new Transport(config.externalApi.popcorn.url);
 const popcornTimeApi = new PopcornTimeApi(popcornTimeTransport);
 const torrentProxy = new TorrentProxy(config.torrentServer);
 
