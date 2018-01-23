@@ -6,8 +6,11 @@ API предоставляющее возможность скачивать т�
 
 - [x] Скачивать торренты по magnet-ссылке отдаваю ссылку на файл/директорию
 - [x] Осуществлять поиск по популярным торрент-трекерам
-- [ ] Предоствалять более широкий API для взаимодействия с торрент-трекерами
--  - [ ] getCategoryList(): {id: string, title: string, coverUrl: string}[]
--  - [ ] getVideoList(category: {id: string, title: string, coverUrl: string}): {id: string, title: string, corevUrl: string, duration: number, views: number}[]
--  - [ ] getPopularVideoList(): {id: string, title: string, coverUrl: string}): {id: string, title: string, corevUrl: string, duration: number, views: number}[]
--  - [ ] getVideoUrl(video: {id: string, title: string, coverUrl: string}): {id: string, title: string, corevUrl: string, duration: number, views: number}): string
+- [x] Проксировать вызовы до popcorn-time api
+- [ ] Добавить веб-интерфейс
+- [ ] (?) Добавить унифицированный api упростив взаимодействие с пользователем
+
+## Внутренние улучшения:
+
+- [ ] Отказаться от модуля peerflix
+- [ ] Определиться что делать с tracker-proxy
