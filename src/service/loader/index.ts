@@ -1,15 +1,16 @@
-import { ChildProcess } from 'child_process';
 import { adapters, Manager } from 'tracker-proxy';
-import { join as pathJoin } from 'path';
-import { spawn } from 'child_process';
+import { HLSServer, BittorrentStreamProviderBuilder } from 'http-streaming-server';
+import * as TorrentStream from 'torrent-stream';
+import { getType as getMimeType } from 'mime';
+import * as http from 'http';
 
 export default class TorrentProxyServer {
 	private config: any;
 	private trackerManager: Manager;
-	private peerflix: ChildProcess | null;
+	private server: http.Server | null;
 
 	constructor(config) {
-		this.peerflix = null;
+		this.server = null;
 		this.config = config;
 
 		this.trackerManager = new Manager();
@@ -44,37 +45,48 @@ export default class TorrentProxyServer {
 				.then(() => {
 					const localIP = this.config.ip;
 					const port = this.config.port;
-					const peerflixBin = pathJoin('peerflix');
-					this.peerflix = spawn('peerflix', ['--hostname', localIP, '--port', port, magnet]);
-					this.peerflix.on('error', (err) => reject(err));
 
-					let resolved = false;
+					const torrentStreamEngine = TorrentStream(magnet);
+					const server = http.createServer();
 
-					this.peerflix.stdout.on('data', () => {
-						if (resolved) {
-							return;
-						}
-						resolved = true;
-						resolve('http://' + localIP + ':' + port);
+					server.once('error', (err) => {
+						reject(err);
 					});
 
-					this.peerflix.stderr.on('data', (err) => {
-						if (err) {
-							reject(err);
-						}
+					server.once('listening', () => {
+						const address = server.address();
+
+						resolve(`http://${address.address}:${address.port}/`);
 					});
+
+					const provider = new BittorrentStreamProviderBuilder()
+						.withFilter((file) => {
+							const regex = /^video\//g;
+							const mimeType = getMimeType(file.name);
+
+							return regex.test(mimeType);
+						})
+						.build(torrentStreamEngine);
+
+					const hlsMiddleware = new HLSServer(server, { provider });
+
+					server.listen(port, localIP);
+					this.server = server;
 				});
 		});
 	}
 
 	cancel(): Promise<void> {
-		if (!this.peerflix) {
+		if (!this.server) {
 			return Promise.resolve();
 		}
 
-		this.peerflix.kill('SIGTERM');
-		this.peerflix = null;
+		return new Promise((resolve, reject) => {
+			this.server.close((reason) => {
+				this.server = null;
 
-		return Promise.resolve();
+				resolve(reason);
+			});
+		});
 	}
 }
