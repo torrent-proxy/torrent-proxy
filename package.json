@@ -6,24 +6,24 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "rm -rf ./lib",
-
     "prebuild": "npm run clean",
     "build": "tsc",
-
     "prestart": "npm run build",
     "start": "node ./lib/src/"
-
   },
   "dependencies": {
-    "tracker-proxy": "git+ssh://git@github.com:reeFridge/tracker-proxy.git#develop",
-    "peerflix": "0.37.0",
-    "express": "^4.16.2"
+    "express": "^4.16.2",
+    "http-streaming-server": "^0.2.0",
+    "mime": "^2.2.0",
+    "torrent-stream": "^1.0.3",
+    "tracker-proxy": "git+ssh://git@github.com:reeFridge/tracker-proxy.git#develop"
   },
   "author": "",
   "license": "MIT",
   "devDependencies": {
     "@types/express": "^4.11.0",
     "@types/node": "^8.5.2",
+    "@types/torrent-stream": "0.0.5",
     "typescript": "^2.6.2"
   }
 }
