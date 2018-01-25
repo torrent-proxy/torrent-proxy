@@ -36,7 +36,7 @@ export default class TorrentProxyServer {
 		});
 	}
 
-	load(magnet: string): Promise<string> {
+	load(magnet: string): Promise<{url: string}> {
 		return new Promise((resolve, reject) => {
 			return this.cancel()
 				.then(() => {
@@ -52,7 +52,7 @@ export default class TorrentProxyServer {
 							return;
 						}
 						resolved = true;
-						resolve('http://' + localIP + ':' + port);
+						resolve({url: 'http://' + localIP + ':' + port});
 					});
 
 					this.peerflix.stderr.on('data', (err) => {
