@@ -16,6 +16,7 @@
     "express": "^4.16.2",
     "node-fetch": "^1.7.3",
     "peerflix": "0.37.0",
+    "torrent-stream": "^1.0.3",
     "tracker-proxy": "git+ssh://git@github.com:reeFridge/tracker-proxy.git#develop"
   },
   "author": "",
