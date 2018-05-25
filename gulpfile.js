@@ -1,4 +1,4 @@
-var gulp = require('gulp'),
+let gulp = require('gulp'),
     sass = require('gulp-sass'),
     browserSync = require('browser-sync'),
     useref = require('gulp-useref'),
@@ -15,7 +15,7 @@ var gulp = require('gulp'),
 
 //Development Tasks
 //--------------------
-gulp.task('sass', function () {
+gulp.task('sass', () => {
     return gulp.src('src/scss/**/*.scss')
         .pipe(sass())
         .pipe(autoprefixer([
@@ -31,14 +31,14 @@ gulp.task('sass', function () {
 
 //Watchers
 //-----------------
-gulp.task('watch', ['browserSync'], function() {
+gulp.task('watch', ['browserSync'], () => {
     gulp.watch('src/scss/**/*.scss', ['sass']);
     gulp.watch('src/js/**/*.js', browserSync.reload);
     gulp.watch('src/**/*.html', browserSync.reload);
 });
 
 // Start browserSync server
-gulp.task('browserSync', function() {
+gulp.task('browserSync', () => {
     browserSync({
         server: {
             baseDir: 'src'
@@ -51,7 +51,7 @@ gulp.task('browserSync', function() {
 //----------------
 
 //Optimising Css and JavaScript
-gulp.task('useref', function(){
+gulp.task('useref', () => {
 
     return gulp.src('src/*.html')
         .pipe(useref())
@@ -60,7 +60,7 @@ gulp.task('useref', function(){
         .pipe(gulp.dest('build'))
 });
 
-gulp.task('min-js', function () {
+gulp.task('min-js', () => {
     return gulp.src('node_modules/angular/angular.js')
         .pipe(concat('angular.min.js'))
         .pipe(uglifyJs())
@@ -68,7 +68,7 @@ gulp.task('min-js', function () {
 });
 
 //Optimising Images
-gulp.task('images', function(){
+gulp.task('images', () => {
     return gulp.src('src/images/**/*.+(png|jpg|jpeg|gif|svg)')
         .pipe(cache(imagemin({
             interlaced: true
@@ -77,30 +77,30 @@ gulp.task('images', function(){
 });
 
 // Copying fonts
-gulp.task('fonts', function() {
+gulp.task('fonts', () => {
     return gulp.src('src/fonts/**/*')
         .pipe(gulp.dest('build/fonts'))
 });
 
 //Copying Minified JS
-gulp.task('copyFrameworkJS', function () {
+gulp.task('copyFrameworkJS', () => {
     return gulp.src('src/js/*.min.js')
         .pipe(gulp.dest('build/scripts'))
 });
 
 //Copying assets
-gulp.task('copyAssets', function () {
+gulp.task('copyAssets', () => {
     return gulp.src('assets/*.html')
         .pipe(gulp.dest('build/assets'))
 });
 
 // Cleaning
-gulp.task('clean', function(callback) {
+gulp.task('clean', (callback) => {
     del('build');
     return cache.clearAll(callback);
 });
 
-gulp.task('clean-dist', function(){
+gulp.task('clean-dist', () => {
     del(['build/**/*', '!build/images', '!build/images/**/*'])
 });
 
@@ -109,7 +109,7 @@ gulp.task('clean-dist', function(){
 // ---------------
 
 //prod version
-gulp.task('build', function(callback) {
+gulp.task('build', (callback) => {
     runSequence('clean-dist',
         'sass',
         'min-js',
@@ -118,7 +118,7 @@ gulp.task('build', function(callback) {
 });
 
 //realtime developing server
-gulp.task('dev', function (callback) {
+gulp.task('dev', (callback) => {
     runSequence(['sass', 'browserSync', 'watch'],
         callback
     )
