@@ -16,7 +16,7 @@ var gulp = require('gulp'),
 //Development Tasks
 //--------------------
 gulp.task('sass', function () {
-    return gulp.src('src/sass/**/*.sass')
+    return gulp.src('src/scss/**/*.scss')
         .pipe(sass())
         .pipe(autoprefixer([
             'last 10 versions'
@@ -32,7 +32,7 @@ gulp.task('sass', function () {
 //Watchers
 //-----------------
 gulp.task('watch', ['browserSync'], function() {
-    gulp.watch('src/sass/**/*.sass', ['sass']);
+    gulp.watch('src/scss/**/*.scss', ['sass']);
     gulp.watch('src/js/**/*.js', browserSync.reload);
     gulp.watch('src/**/*.html', browserSync.reload);
 });
@@ -83,9 +83,15 @@ gulp.task('fonts', function() {
 });
 
 //Copying Minified JS
-gulp.task('copy', function () {
+gulp.task('copyFrameworkJS', function () {
     return gulp.src('src/js/*.min.js')
         .pipe(gulp.dest('build/scripts'))
+});
+
+//Copying assets
+gulp.task('copyAssets', function () {
+    return gulp.src('assets/*.html')
+        .pipe(gulp.dest('build/assets'))
 });
 
 // Cleaning
@@ -107,7 +113,7 @@ gulp.task('build', function(callback) {
     runSequence('clean-dist',
         'sass',
         'min-js',
-        ['useref', 'copy', 'images', 'fonts'],
+        ['useref', 'copyFrameworkJS', 'copyAssets', 'images', 'fonts'],
         callback);
 });
 
@@ -117,4 +123,3 @@ gulp.task('dev', function (callback) {
         callback
     )
 });
-

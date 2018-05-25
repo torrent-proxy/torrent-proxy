@@ -9,4 +9,3 @@ var app = angular.module('TorrentWebApplication', [])
 .controller('MainPageController', function ($scope) {
     
 })
-
