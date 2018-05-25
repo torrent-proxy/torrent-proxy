@@ -1,9 +1,0 @@
-#main-input {
-	border-color: orangered;
-	width: 500px;
-	height: 30px;
-	margin-top: 7px;
-}
-#main-input:focus {
-	outline: none;
-}
