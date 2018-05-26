@@ -10,7 +10,9 @@ let gulp = require('gulp'),
     imagemin = require('gulp-imagemin'),
     cache = require('gulp-cache'),
     runSequence = require('run-sequence'),
-    minifyCSS = require('gulp-minify-css');
+    babel = require('gulp-babel'),
+    rename = require('gulp-rename'),
+    cssNano = require('gulp-cssnano');
 
 
 //Development Tasks
@@ -55,14 +57,23 @@ gulp.task('useref', () => {
 
     return gulp.src('src/*.html')
         .pipe(useref())
-        .pipe(gulpIf('*.css', minifyCSS()))
+        .pipe(gulpIf('*.css', cssNano()))
+        .pipe(gulpIf('*.js', babel({
+            presets: ['env']
+            })))
         .pipe(gulpIf('*.js', uglifyJs()))
+        .pipe(rename({
+            suffix : '.min'
+        }))
         .pipe(gulp.dest('build'))
 });
 
 gulp.task('min-js', () => {
     return gulp.src('node_modules/angular/angular.js')
         .pipe(concat('angular.min.js'))
+        .pipe(babel({
+            presets: ['env']
+        }))
         .pipe(uglifyJs())
         .pipe(gulp.dest('src/js'));
 });
@@ -90,7 +101,7 @@ gulp.task('copyFrameworkJS', () => {
 
 //Copying assets
 gulp.task('copyAssets', () => {
-    return gulp.src('assets/*.html')
+    return gulp.src('src/assets/*.html')
         .pipe(gulp.dest('build/assets'))
 });
 

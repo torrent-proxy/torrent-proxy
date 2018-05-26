@@ -1,13 +1,30 @@
 <html ng-app="TorrentWebApplication">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Torrent Download</title>
     <!-- build:css styles/combined.css -->
     <link href="css/main.css" rel="stylesheet">
     <!-- endbuild -->
 </head>
-<body>
-Hello World
+<body ng-controller="MainPageController" ng-init="onFirstLoad()">
+<div class="header">
+    <div class="navbar">
+        <div class="navbar-button" ng-click="setPage('torrent')">
+            Главная
+        </div>
+        <div class="navbar-button" ng-click="setPage('about-us')">
+            О нас
+        </div>
+        <div class="navbar-button" ng-click="setPage('donate')">
+            Донат
+        </div>
+    </div>
+
+</div>
+
+<div class="body">
+    <div class="content" torrent "></div>
+</div>
 
 <script src="js/angular.min.js"></script>
 <!-- build:js scripts/combined.js -->
