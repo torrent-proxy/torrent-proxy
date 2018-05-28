@@ -15,9 +15,22 @@ body {
         padding: 10px;
         border: 1px solid gray;
         border-left: none;
+        background-color: #7FFFD4;
+        cursor: pointer;
+
+        &.opened {
+          background-color: #6FEFC4;
+        }
       }
+
       .navbar-button:first-child{
         border-left: 1px solid gray;
+      }
+      .navbar-button:hover{
+        background-color: #8FFFE4;
+        &.opened {
+          background-color: #6FEFC4;
+        }
       }
     }
   }
@@ -31,6 +44,13 @@ body {
       display: flex;
       justify-content: center;
       align-items: center;
+
+      .ng-scope {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
 
       .send-form {
         display: flex;
@@ -56,10 +76,12 @@ body {
           background-color: #228b22;
           color: white;
           cursor: pointer;
+
+          &.disabled {
+            cursor: not-allowed;
+          }
         }
-        &.disabled {
-          cursor: not-allowed;
-        }
+
         .send-button:hover {
           background-color: #329b32;
         }

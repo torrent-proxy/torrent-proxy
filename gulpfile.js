@@ -69,8 +69,8 @@ gulp.task('useref', () => {
 });
 
 gulp.task('min-js', () => {
-    return gulp.src('node_modules/angular/angular.js')
-        .pipe(concat('angular.min.js'))
+    return gulp.src(['node_modules/angular/angular.js', 'node_modules/angular-route/angular-route.js'])
+        .pipe(concat('libs.min.js'))
         .pipe(babel({
             presets: ['env']
         }))

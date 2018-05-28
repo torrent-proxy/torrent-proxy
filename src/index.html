@@ -9,13 +9,16 @@
 <body ng-controller="MainPageController" ng-init="onFirstLoad()">
 <div class="header">
     <div class="navbar">
-        <div class="navbar-button" ng-click="setPage('torrent')">
+        <div class="navbar-button" ng-class="currentPage == '#!' ? 'opened' : ''"
+             ng-click="goToPage('#!')">
             Главная
         </div>
-        <div class="navbar-button" ng-click="setPage('about-us')">
+        <div class="navbar-button" ng-class="currentPage == '#!about-us' ? 'opened' : ''"
+             ng-click="goToPage('#!about-us')">
             О нас
         </div>
-        <div class="navbar-button" ng-click="setPage('donate')">
+        <div class="navbar-button" ng-class="currentPage == '#!donate' ? 'opened' : ''"
+             ng-click="goToPage('#!donate')">
             Донат
         </div>
     </div>
@@ -23,10 +26,10 @@
 </div>
 
 <div class="body">
-    <div class="content" torrent "></div>
+    <div class="content" ng-view></div>
 </div>
 
-<script src="js/angular.min.js"></script>
+<script src="js/libs.min.js"></script>
 <!-- build:js scripts/combined.js -->
 <script src="js/main.js"></script>
 <!-- endbuild -->
