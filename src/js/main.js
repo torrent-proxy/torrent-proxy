@@ -5,13 +5,17 @@ let app = angular.module('TorrentWebApplication', ['ngRoute'])
 .config(($routeProvider) => {
     $routeProvider
         .when('/', {
-            templateUrl : 'assets/torrent.html'
+            templateUrl : 'assets/torrent.html',
+            controller : 'TorrentSearchController',
+            title : 'Torrent-proxy: Download'
         })
         .when('/about-us', {
-            templateUrl : 'assets/about-us.html'
+            templateUrl : 'assets/about-us.html',
+            title : 'Torrent-proxy: About Us'
         })
         .when('/donate', {
-            templateUrl : 'assets/donate.html'
+            templateUrl : 'assets/donate.html',
+            title : 'Torrent-proxy: Donate'
         })
 })
 
@@ -21,7 +25,6 @@ let app = angular.module('TorrentWebApplication', ['ngRoute'])
     $scope.goToPage = (link) => {
         window.location.href = link;
         $scope.currentPage = link;
-        console.log($scope.currentPage);
     }
 })
 
@@ -32,5 +35,10 @@ let app = angular.module('TorrentWebApplication', ['ngRoute'])
         let torrentLink = $scope.url.value;
         console.log(torrentLink);
     }
-});
+})
 
+.run(['$rootScope', '$route', ($rootScope, $route) => {
+    $rootScope.$on('$routeChangeSuccess', function() {
+        document.title = $route.current.title;
+    });
+}])
