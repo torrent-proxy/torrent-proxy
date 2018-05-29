@@ -1,36 +1,13 @@
-<html ng-app="TorrentWebApplication">
+<!doctype html>
+<html lang="en" style="width: 100%; height: 100%">
 <head>
-    <meta charset="UTF-8">
-    <!-- build:css styles/combined.css -->
-    <link href="css/main.css" rel="stylesheet">
-    <!-- endbuild -->
+  <meta charset="utf-8">
+  <base href="/">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
-<body ng-controller="MainPageController" ng-init="onFirstLoad()">
-<div class="header">
-    <div class="navbar">
-        <div class="navbar-button" ng-class="currentPage == '#!' ? 'opened' : ''"
-             ng-click="goToPage('#!')">
-            Главная
-        </div>
-        <div class="navbar-button" ng-class="currentPage == '#!about-us' ? 'opened' : ''"
-             ng-click="goToPage('#!about-us')">
-            О нас
-        </div>
-        <div class="navbar-button" ng-class="currentPage == '#!donate' ? 'opened' : ''"
-             ng-click="goToPage('#!donate')">
-            Донат
-        </div>
-    </div>
-
-</div>
-
-<div class="body">
-    <div class="content" ng-view></div>
-</div>
-
-<script src="js/libs.min.js"></script>
-<!-- build:js scripts/combined.js -->
-<script src="js/main.js"></script>
-<!-- endbuild -->
+<body style="width: 100%; height: 100%">
+  <app-root></app-root>
 </body>
 </html>

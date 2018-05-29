@@ -1,0 +1,36 @@
+.header {
+  flex-flow: row;
+  height: 5%;
+
+  .navbar {
+    height: 100%;
+    display: flex;
+
+    a {
+      text-decoration: none;
+      color: black;
+    }
+
+    .navbar-button {
+      padding: 10px;
+      border: 1px solid gray;
+      border-left: none;
+      background-color: #7FFFD4;
+      cursor: pointer;
+
+      &.opened {
+        background-color: #6FEFC4;
+      }
+    }
+
+    .navbar-button:first-child{
+      border-left: 1px solid gray;
+    }
+    .navbar-button:hover{
+      background-color: #8FFFE4;
+      &.opened {
+        background-color: #6FEFC4;
+      }
+    }
+  }
+}

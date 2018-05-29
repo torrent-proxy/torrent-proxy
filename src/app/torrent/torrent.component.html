@@ -1,0 +1,8 @@
+<div class="content">
+  <form #linkForm="ngForm" class="send-form">
+    <input type="url" [(ngModel)]="linkForm.url" name="url" class="link-input" placeholder="URL...">
+    <div type="submit" class="send-button" ngClass="linkForm.form.valid ? '' : 'disabled'" (click)="sendLink(linkForm.url)">
+      Отправить
+    </div>
+  </form>
+</div>

@@ -1,0 +1,15 @@
+html {
+  height: 100%;
+}
+
+.wrapper {
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+  height: 100%;
+
+  .content {
+    height: 80%;
+  }
+}
+

@@ -1,0 +1,45 @@
+app-torrent{
+  height: 100%;
+}
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+
+  .send-form {
+    display: flex;
+    width: 40%;
+    height: 35%;
+    align-items: center;
+    flex-flow: column;
+    border: 1px solid gray;
+    justify-content: space-between;
+    padding: 20px;
+
+    .link-input {
+      width: 90%;
+      padding: 10px;
+    }
+    .send-button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 40%;
+      padding: 10px;
+      background-color: #228b22;
+      color: white;
+      cursor: pointer;
+
+      &.disabled {
+        cursor: not-allowed;
+      }
+    }
+
+    .send-button:hover {
+      background-color: #329b32;
+    }
+
+
+  }
+}
