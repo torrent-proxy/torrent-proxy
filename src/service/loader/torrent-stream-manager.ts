@@ -8,7 +8,9 @@ export default class TorrentStreamManager {
 	}
 	
 	createTorrentStream(hash: string): ITorrentStream {
-		const newStream =  this.streams[hash] || new ITorrentStream(hash);
+		// TODO: Нужна имплементация ITorrentStream
+		// const newStream =  this.streams[hash] || new ITorrentStream(hash);
+		const newStream =  this.streams[hash];
 		this.streams[hash] = newStream;
 
 		return newStream;
