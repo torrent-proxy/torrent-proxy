@@ -1,7 +1,9 @@
 html {
   height: 100%;
 }
-
+body {
+  margin: 0;
+}
 .wrapper {
   display: flex;
   flex-flow: column;
@@ -9,7 +11,8 @@ html {
   height: 100%;
 
   .content {
-    height: 80%;
+    margin: 2% 3% 5% 3%;
+    overflow: scroll;
   }
 }
 

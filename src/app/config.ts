@@ -1,3 +1,3 @@
 export const CONFIG = {
-    BACKEND_URL : '127.0.0.1'
+    BACKEND_URL : 'http://localhost:8811/'
 };

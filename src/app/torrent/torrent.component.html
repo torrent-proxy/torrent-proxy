@@ -1,8 +1,28 @@
 <div class="content">
   <form #linkForm="ngForm" class="send-form">
-    <input type="url" [(ngModel)]="linkForm.url" name="url" class="link-input" placeholder="URL...">
-    <div type="submit" class="send-button" ngClass="linkForm.form.valid ? '' : 'disabled'" (click)="sendLink(linkForm.url)">
-      Отправить
+    <div class="link-wrapper">
+      <input type="url" [(ngModel)]="linkForm.url" name="magnet" class="link-input" placeholder="Magnet link...">
+      <div class="button-holder">
+        <div type="submit" class="button send" [ngClass]="[!loading ? '' : 'disabled']" (click)="buildFileList(linkForm.url)">
+          Отправить
+        </div>
+        <div class="button clear" *ngIf="files" (click)="clearList()">Очистить</div>
+      </div>
+
+    </div>
+
+    <div class="files-wrapper" *ngIf="files">
+      <div class="torrent-item" *ngFor="let file of files; let isOdd = odd; let isLast = last; " [class.odd]="isOdd" [class.last]="isLast" (click)="downloadItem(file.path)">{{file.name}}</div>
+    </div>
+
+    <div class="button-holder bottom" *ngIf="files">
+      <div class="button clear" (click)="clearList()">Очистить</div>
     </div>
   </form>
+
+  <div class="load" *ngIf="loading">
+    <div class="holder">
+      <div class="preloader"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+    </div>
+  </div>
 </div>
