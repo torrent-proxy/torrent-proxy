@@ -10,6 +10,7 @@ import { TorrentComponent } from './torrent/torrent.component';
 import { FooterComponent } from './footer/footer.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { DonateComponent } from './donate/donate.component';
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -18,13 +19,14 @@ import { DonateComponent } from './donate/donate.component';
     TorrentComponent,
     FooterComponent,
     AboutUsComponent,
-    DonateComponent,
+    DonateComponent
   ],
   imports: [
-    FlexLayoutModule,
+		HttpClientModule,
+		FlexLayoutModule,
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+		FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

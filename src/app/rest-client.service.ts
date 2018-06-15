@@ -1,13 +1,16 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { SERVER_PROPERTIES } from './ServerProperties';
+import {Injectable, NgModule} from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { CONFIG } from "./config";
 
-@Injectable({
-  providedIn: 'root'
+@NgModule({
+  imports: [HttpClient],
+  providers: [RestClientService]
 })
+
+@Injectable()
 export class RestClientService {
 
-  private serverURL = SERVER_PROPERTIES.BACKEND_URL;
+  private serverURL = CONFIG.BACKEND_URL;
 
   constructor(private http: HttpClient) { }
 }
