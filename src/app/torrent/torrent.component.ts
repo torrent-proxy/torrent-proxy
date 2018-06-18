@@ -23,18 +23,24 @@ export class TorrentComponent implements OnInit {
   ngOnInit() {
   }
 
-  buildFileList(magnet): Promise<any> {
+  buildFileList(magnet): void {
     this._magnetLink = magnet;
     this._loading = true;
-		return this._restClientService.getFileList(this._magnetLink)
+    this.getFileList()
+			.then(() => {
+				this._loading = false;
+			})
+
+	}
+
+	getFileList():Promise<any> {
+		return (this._restClientService.getFileList(this._magnetLink)
 			.then(data => {
 				this._files = data['files'];
-				this._loading = false;
 			})
 			.catch(err => {
 				console.log(err);
-			})
-
+			}))
 	}
 
 	setDownloadUrl(path): string {
