@@ -32,7 +32,6 @@ app-torrent{
       .torrent-item {
         padding: 5px;
         border: 1px solid #A9A9A9;
-        cursor: pointer;
 
         &.odd {
           background-color: #D3D3D3;
@@ -43,12 +42,20 @@ app-torrent{
         &.last {
           border-bottom: 1px solid #A9A9A9;
         }
+
+        a {
+          text-decoration: unset;
+          color: #000000;
+        }
+        a:hover{
+          color: #00FA9A;
+          text-decoration: underline;
+        }
       }
     }
 
     .button-holder {
       display: flex;
-      justify-content: space-between;
       padding: 20px;
       width: 20%;
 
@@ -63,6 +70,8 @@ app-torrent{
         padding: 10px;
         background-color: #228b22;
         color: white;
+        margin-right: 10px;
+        margin-left: 10px;
         cursor: pointer;
 
         &.clear {
