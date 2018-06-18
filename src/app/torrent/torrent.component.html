@@ -3,24 +3,26 @@
     <div class="link-wrapper">
       <input type="url" [(ngModel)]="linkForm.url" name="magnet" class="link-input" placeholder="Magnet link...">
       <div class="button-holder">
-        <div type="submit" class="button send" [ngClass]="[!loading ? '' : 'disabled']" (click)="buildFileList(linkForm.url)">
+        <div type="submit" class="button send" [ngClass]="[!isLoading() ? '' : 'disabled']" (click)="buildFileList(linkForm.url)">
           Отправить
         </div>
-        <div class="button clear" *ngIf="files" (click)="clearList()">Очистить</div>
+        <div class="button clear" *ngIf="getFiles().length" (click)="clearList()">Очистить</div>
       </div>
 
     </div>
 
-    <div class="files-wrapper" *ngIf="files">
-      <div class="torrent-item" *ngFor="let file of files; let isOdd = odd; let isLast = last; " [class.odd]="isOdd" [class.last]="isLast" (click)="downloadItem(file.path)">{{file.name}}</div>
+    <div class="files-wrapper" *ngIf="getFiles().length">
+      <div class="torrent-item" *ngFor="let file of getFiles(); let isOdd = odd; let isLast = last; " [class.odd]="isOdd" [class.last]="isLast">
+        <a href="{{setDownloadUrl(file.path)}}" download="{{file.name}}">{{file.name}}</a>
+      </div>
     </div>
 
-    <div class="button-holder bottom" *ngIf="files">
+    <div class="button-holder bottom" *ngIf="getFiles().length">
       <div class="button clear" (click)="clearList()">Очистить</div>
     </div>
   </form>
 
-  <div class="load" *ngIf="loading">
+  <div class="load" *ngIf="isLoading()">
     <div class="holder">
       <div class="preloader"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
     </div>

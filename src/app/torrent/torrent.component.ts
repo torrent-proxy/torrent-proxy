@@ -9,46 +9,48 @@ import { CONFIG } from "../config";
   styleUrls: ['./torrent.component.scss']
 })
 
-
 export class TorrentComponent implements OnInit {
-	public files;
-	public error;
-	public loading = false;
-	public magnetLink;
+	private _files: object = [];
+	private _loading: boolean = false;
+	private _magnetLink: string = '';
+	private _serverUrl = CONFIG.BACKEND_URL;
 
 
-  constructor( private restClientService : RestClientService) {
+  constructor( private _restClientService : RestClientService) {
 
   }
 
   ngOnInit() {
   }
 
-  buildFileList(magnet) {
-    this.magnetLink = magnet;
-    this.loading = true;
-    this.magnetLink = magnet;
-    this.restClientService.getFileList(this.magnetLink)
-      .then(data => {
-        this.files = data['files'];
-				this.loading = false;
-      })
-      .catch(err => {
-        this.error = err;
-      })
+  buildFileList(magnet): Promise<any> {
+    this._magnetLink = magnet;
+    this._loading = true;
+		return this._restClientService.getFileList(this._magnetLink)
+			.then(data => {
+				this._files = data['files'];
+				this._loading = false;
+			})
+			.catch(err => {
+				console.log(err);
+			})
 
 	}
 
-	downloadItem(itemPath) {
-    this.loading = true;
-    this.restClientService.downloadFile(this.magnetLink, itemPath).subscribe(() => {
-      this.loading = false;
-    });
+	setDownloadUrl(path): string {
+  	return `${this._serverUrl}/download/${encodeURIComponent(this._magnetLink)}/${encodeURIComponent(path)}`;
+	}
+
+  clearList(): void {
+    this._files = [];
+    this._magnetLink = '';
   }
 
-  clearList() {
-    this.files = null;
-    this.magnetLink = null;
-  }
+  isLoading(): boolean {
+  	return this._loading;
+	}
 
+	getFiles(): object {
+  	return this._files;
+	}
 }

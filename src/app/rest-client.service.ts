@@ -10,25 +10,20 @@ import { CONFIG } from "./config";
 @Injectable()
 export class RestClientService {
 
-  private serverURL = CONFIG.BACKEND_URL;
+  private _serverURL = CONFIG.BACKEND_URL;
 
-  constructor(private http: HttpClient) { }
+  constructor(private _http: HttpClient) { }
 
   getFileList(magnet): Promise<Object> {
-    let url = `${this.serverURL + 'rnd2/'}${encodeURIComponent(magnet)}`;
+    let url = `${this._serverURL + '/rnd2/'}${encodeURIComponent(magnet)}`;
 
-    return this.http.get(url)
+    return this._http.get(url)
       .toPromise()
       .then((data) =>{
-				return data;
+        return data;
       })
       .catch(err => {
-				return Promise.reject(err.error || 'Server error');
+        return Promise.reject(err.error || 'Server error');
       })
-  }
-
-  downloadFile(magnet, path) {
-    let url = `download/${encodeURIComponent(magnet)}/${encodeURIComponent(path)}`;
-    return this.http.get(url);
   }
 }
