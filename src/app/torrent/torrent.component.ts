@@ -27,10 +27,7 @@ export class TorrentComponent implements OnInit {
     this._magnetLink = magnet;
     this._loading = true;
     this.getFileList()
-			.then(() => {
-				this._loading = false;
-			})
-
+			.then(() => this._loading = false)
 	}
 
 	getFileList():Promise<any> {

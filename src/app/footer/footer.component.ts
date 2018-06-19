@@ -20,6 +20,11 @@ export class FooterComponent implements OnInit {
   getYear():string {
 		const date = new Date();
 		this._currentYear = date.getFullYear();
-    return (this._startedYear !== this._currentYear) ? `${this._startedYear}-${this._currentYear}.` : `${this._currentYear}.`;
+
+		if (this._startedYear !== this._currentYear) {
+		  return `${this._startedYear}-${this._currentYear}.`;
+    } else {
+			return `${this._currentYear}.`;
+    }
   }
 }
