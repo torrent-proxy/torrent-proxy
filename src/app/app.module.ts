@@ -29,7 +29,7 @@ import { RestClientService } from "./rest-client.service";
     AppRoutingModule,
 		FormsModule,
   ],
-  providers: [RestClientService],
-  bootstrap: [AppComponent]
+  providers: [ RestClientService ],
+  bootstrap: [ AppComponent ]
 })
 export class AppModule { }
