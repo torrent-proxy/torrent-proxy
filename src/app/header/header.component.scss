@@ -1,10 +1,43 @@
 .header {
   flex-flow: row;
   height: 5%;
+  justify-content: center;
+
+  .languages {
+    display: flex;
+    position: relative;
+    float: right;
+    padding: 3px;
+
+    .lang {
+      padding-right: 5px;
+      padding-left: 5px;
+
+      &.active {
+        text-decoration: underline;
+        color: #1ccc8d;
+      }
+    }
+    .lang:first-child {
+      border-right: solid gray 1px;
+    }
+
+    .lang:hover {
+      color: #58caff;
+      cursor: pointer;
+    }
+  }
+
+  .logo {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+  }
 
   .navbar {
     height: 100%;
     display: flex;
+    justify-content: center;
 
     a {
       text-decoration: none;
@@ -15,11 +48,11 @@
       padding: 10px;
       border: 1px solid gray;
       border-left: none;
-      background-color: #7FFFD4;
+      background-color: #2cdc9d;
       cursor: pointer;
 
       &.opened {
-        background-color: #6FEFC4;
+        background-color: #1ccc8d;
       }
     }
 
@@ -27,9 +60,9 @@
       border-left: 1px solid gray;
     }
     .navbar-button:hover{
-      background-color: #8FFFE4;
+      background-color: #3cecad;
       &.opened {
-        background-color: #6FEFC4;
+        background-color: #1ccc8d;
       }
     }
   }

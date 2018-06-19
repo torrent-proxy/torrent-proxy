@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter, map, mergeMap } from 'rxjs/internal/operators';
 import { Title } from "@angular/platform-browser";
+import { TranslateService } from "@ngx-translate/core";
+import {Observable} from "rxjs/index";
+
 
 @Component({
   selector: 'app-header',
@@ -13,9 +16,13 @@ export class HeaderComponent implements OnInit {
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private titleService: Title) {
-
+    private titleService: Title,
+		private translate: TranslateService) {
+  	translate.setDefaultLang('en');
+  	translate.use('en');
   }
+
+  private _currentLanguage: string = 'en';
 
   ngOnInit(){
 		this.router.events
@@ -29,4 +36,13 @@ export class HeaderComponent implements OnInit {
       .pipe(mergeMap((route) => route.data))
       .subscribe((event) => this.titleService.setTitle(event['title']));
   }
+
+  getCurrentLanguage(): string {
+		return this._currentLanguage;
+	}
+
+	setLanguage(lang) {
+  	this._currentLanguage = lang;
+  	this.translate.use(lang);
+	}
 }

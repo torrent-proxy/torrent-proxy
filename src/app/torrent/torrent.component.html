@@ -1,30 +1,35 @@
 <div class="content">
   <form #linkForm="ngForm" class="send-form">
     <div class="link-wrapper">
-      <input type="url" [(ngModel)]="linkForm.url" name="magnet" class="link-input" placeholder="Magnet link...">
+      <input type="url" [(ngModel)]="linkForm.url" name="magnet" class="link-input" placeholder="{{'MAGNET_LINK_PLACEHOLDER' | translate}}">
       <div class="button-holder">
-        <div type="submit" class="button send" [ngClass]="[!isLoading() ? '' : 'disabled']" (click)="buildFileList(linkForm.url)">
-          Отправить
+        <div type="submit" class="button send" [ngClass]="[!isLoading() ? '' : 'disabled']"
+             (click)="buildFileList(linkForm.url)">
+          {{"SEND_BUTTON" | translate}}
         </div>
-        <div class="button clear" *ngIf="getFiles().length" (click)="clearList()">Очистить</div>
+        <div class="button clear" *ngIf="getFiles().length" (click)="clearList()">{{'CLEAR_BUTTON' | translate}}</div>
       </div>
 
     </div>
 
     <div class="files-wrapper" *ngIf="getFiles().length">
-      <div class="torrent-item" *ngFor="let file of getFiles(); let isOdd = odd; let isLast = last; " [class.odd]="isOdd" [class.last]="isLast">
-        <a href="{{setDownloadUrl(file.path)}}" download="{{file.name}}">{{file.name}}</a>
+      <div class="torrent-item" *ngFor="let file of getFiles(); let isOdd = odd; let isLast = last;"
+           [class.odd]="isOdd" [class.last]="isLast">
+        <a href="{{setDownloadUrl(file.path)}}" download="{{getFileName(file.path)}}">{{getFileName(file.path)}}</a>
       </div>
     </div>
 
-    <div class="button-holder bottom" *ngIf="getFiles().length">
-      <div class="button clear" (click)="clearList()">Очистить</div>
+    <div class="button-holder bottom" *ngIf="getPagesCount() > 1">
+      <div class="button page" *ngFor="let dummy of getDummyArray(); let i = index;"
+           [ngClass]="[getCurrentDisplayList() == i ? 'active' : '']" (click)="setDisplayedFiles(i)">{{dummy + 1}}</div>
+      <div class="button clear" (click)="clearList()">{{'CLEAR_BUTTON' | translate}}</div>
     </div>
   </form>
 
   <div class="load" *ngIf="isLoading()">
     <div class="holder">
-      <div class="preloader"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+      <div class="preloader"><div></div><div></div><div></div><div></div><div></div>
+        <div></div><div></div><div></div><div></div><div></div></div>
     </div>
   </div>
 </div>
