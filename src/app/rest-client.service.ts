@@ -2,7 +2,6 @@ import { Injectable, NgModule } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CONFIG } from './config';
 
-
 @NgModule({
 	imports: [ HttpClientModule ],
 	providers: [ RestClientService ]

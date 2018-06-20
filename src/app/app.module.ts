@@ -48,4 +48,4 @@ export function HttpLoaderFactory(http: HttpClient) {
 	providers: [ RestClientService, HttpClient ],
 	bootstrap: [ AppComponent ]
 })
-export class AppModule { }
+export class AppModule {}
