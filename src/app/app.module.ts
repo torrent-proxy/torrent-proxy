@@ -45,7 +45,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 			}
 		})
 	],
-	providers: [ RestClientService, HttpClient ],
-	bootstrap: [ AppComponent ]
+	providers: [RestClientService , HttpClient],
+	bootstrap: [AppComponent]
 })
 export class AppModule {}
