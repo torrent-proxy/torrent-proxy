@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RestClientService } from '../rest-client.service';
 import { CONFIG } from "../config";
+import {style} from '@angular/animations';
 
 
 const FILE_LIST_LENGTH = 10;
@@ -39,7 +40,6 @@ export class TorrentComponent implements OnInit {
 		return (this.restClientService.getFileList(this.magnetLink)
 			.then(data => {
 				this.files = data['files'];
-				console.log(this.files);
 				this.setDisplayedFiles(this.currentListDisplay);
 			})
 			.catch(err => {
@@ -64,8 +64,23 @@ export class TorrentComponent implements OnInit {
 		}
 	}
 
+	startFileDownload(path) {
+		let url = this.setDownloadUrl(path);
+		let a = document.createElement('a');
+		document.body.appendChild(a);
+		a.setAttribute('style','display: none;');
+		a.href = url;
+		a.download = this.getFileName(path);
+		a.click();
+		a.remove();
+	}
+
 	getFileName(path: string): string {
 		return (path.substr(0 ,path.lastIndexOf("."))).split(/[\\/]/).pop();
+	}
+
+	getFileType(path:string) {
+		return (path.substr(path.lastIndexOf(".")+1, path.length)).split(/[\\/]/).pop();
 	}
 
 	setDownloadUrl(path:string): string {

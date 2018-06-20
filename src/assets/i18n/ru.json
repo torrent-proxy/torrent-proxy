@@ -8,8 +8,9 @@
   "FOOTER_TEXT": "© Torrent-proxy. ",
   "MAGNET_LINK_PLACEHOLDER": "Magnet link...",
   "CLEAR_BUTTON": "Очистить",
-  "SEND_BUTTON" : "Отправить"
-
+  "SEND_BUTTON" : "Отправить",
+  "FILE_NAME": "Название файла",
+  "FILE_TYPE": "Тип файла"
 
 
 }

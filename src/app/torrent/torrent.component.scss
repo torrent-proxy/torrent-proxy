@@ -31,7 +31,12 @@ app-torrent{
 
       .torrent-item {
         padding: 5px;
+        display: flex;
         border: 1px solid #A9A9A9;
+
+        &.head {
+          background-color: #B3B3B3;
+        }
 
         &.odd {
           background-color: #D3D3D3;
@@ -43,14 +48,15 @@ app-torrent{
           }
         }
 
-        a {
-          text-decoration: unset;
-          color: #000000;
+        .name {
+          width: 15%;
+          border-right: 1px solid #A9A9A9;
+          margin-right: 10px;
         }
-        a:hover{
-          color: #00FA9A;
-          text-decoration: underline;
-        }
+      }
+      .torrent-item:hover {
+        color: #00b067;
+        text-decoration: underline;
       }
     }
 

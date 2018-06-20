@@ -13,9 +13,20 @@
     </div>
 
     <div class="files-wrapper" *ngIf="getFiles().length">
+      <div class="torrent-item head">
+        <div class="name">
+          {{'FILE_NAME' | translate}}
+        </div>
+        <div class="file-type>">
+          {{'FILE_TYPE' | translate}}
+        </div>
+      </div>
       <div class="torrent-item" *ngFor="let file of getFiles(); let isOdd = odd; let isLast = last;"
-           [class.odd]="isOdd" [class.last]="isLast">
-        <a href="{{setDownloadUrl(file.path)}}" download="{{getFileName(file.path)}}">{{getFileName(file.path)}}</a>
+           [class.odd]="isOdd" [class.last]="isLast" (click)="startFileDownload(file.path)">
+        <div class="name">
+          {{getFileName(file.path)}}
+        </div>
+        <div class="file-type>">{{getFileType(file.path)}}</div>
       </div>
     </div>
 

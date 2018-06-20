@@ -20,7 +20,7 @@ export class RestClientService {
 
 		return this._http.get(url)
 			.toPromise()
-			.then((data) =>{
+			.then((data) => {
 				return data;
 			})
 			.catch(err => {
