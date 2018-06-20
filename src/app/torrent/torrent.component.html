@@ -21,7 +21,7 @@
 
     <div class="button-holder bottom" *ngIf="getPagesCount() > 1">
       <div class="button page" *ngFor="let dummy of getDummyArray(); let i = index;"
-           [ngClass]="[getCurrentDisplayList() == i ? 'active' : '']" (click)="setDisplayedFiles(i)">{{dummy + 1}}</div>
+           [ngClass]="[getCurrentDisplayList() == i ? 'active' : '']" (click)="setDisplayedFiles(i)">{{i + 1}}</div>
       <div class="button clear" (click)="clearList()">{{'CLEAR_BUTTON' | translate}}</div>
     </div>
   </form>

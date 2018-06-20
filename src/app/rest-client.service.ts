@@ -10,12 +10,12 @@ import { CONFIG } from "./config";
 @Injectable()
 export class RestClientService {
 
-  private _serverURL = CONFIG.BACKEND_URL;
+  private serverURL = CONFIG.BACKEND_URL;
 
   constructor(private _http: HttpClient) { }
 
   getFileList(magnet): Promise<Object> {
-    let url = `${this._serverURL + '/rnd2/'}${encodeURIComponent(magnet)}`;
+    let url = `${this.serverURL + '/rnd2/'}${encodeURIComponent(magnet)}`;
 
     return this._http.get(url)
       .toPromise()

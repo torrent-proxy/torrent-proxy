@@ -3,7 +3,6 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter, map, mergeMap } from 'rxjs/internal/operators';
 import { Title } from "@angular/platform-browser";
 import { TranslateService } from "@ngx-translate/core";
-import {Observable} from "rxjs/index";
 
 
 @Component({
