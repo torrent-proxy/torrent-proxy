@@ -22,30 +22,30 @@ export function HttpLoaderFactory(http: HttpClient) {
 
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    TorrentComponent,
-    FooterComponent,
-    AboutUsComponent,
-    DonateComponent,
-  ],
-  imports: [
+	declarations: [
+		AppComponent,
+		HeaderComponent,
+		TorrentComponent,
+		FooterComponent,
+		AboutUsComponent,
+		DonateComponent,
+	],
+	imports: [
 		HttpClientModule,
 		FlexLayoutModule,
-    BrowserModule,
-    AppRoutingModule,
+		BrowserModule,
+		AppRoutingModule,
 		FormsModule,
 		TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
+			loader: {
+				provide: TranslateLoader,
+				useFactory: HttpLoaderFactory,
+				deps: [HttpClient]
 
-      }
-    })
-  ],
-  providers: [ RestClientService ],
-  bootstrap: [ AppComponent ]
+			}
+		})
+	],
+	providers: [ RestClientService ],
+	bootstrap: [ AppComponent ]
 })
 export class AppModule { }

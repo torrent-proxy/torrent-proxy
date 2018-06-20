@@ -2,12 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { RestClientService } from '../rest-client.service';
 import { CONFIG } from "../config";
 
+
 const FILE_LIST_LENGTH = 10;
 
 @Component({
-  selector: 'app-torrent',
-  templateUrl: './torrent.component.html',
-  styleUrls: ['./torrent.component.scss']
+	selector: 'app-torrent',
+	templateUrl: './torrent.component.html',
+	styleUrls: ['./torrent.component.scss']
 })
 
 export class TorrentComponent implements OnInit {
@@ -19,18 +20,18 @@ export class TorrentComponent implements OnInit {
 	private itemsToShow: any[] = [];
 
 
-  constructor( private restClientService : RestClientService) {
+	constructor( private restClientService : RestClientService) {
 
-  }
+	}
 
-  ngOnInit() {
-  }
+	ngOnInit() {
+	}
 
-  buildFileList(magnet: string): void {
-  	this.currentListDisplay = 0;
-    this.magnetLink = magnet;
-    this.loading = true;
-    this.getFileList()
+	buildFileList(magnet: string): void {
+		this.currentListDisplay = 0;
+		this.magnetLink = magnet;
+		this.loading = true;
+		this.getFileList()
 			.then(() => this.loading = false)
 	}
 
@@ -47,18 +48,18 @@ export class TorrentComponent implements OnInit {
 	}
 
 	setDisplayedFiles(listNumber: number):void {
-  	let fileList = this.files;
-  	this.currentListDisplay = listNumber;
-  	let firstItem: number = this.currentListDisplay * FILE_LIST_LENGTH;
-  	let lastItem: number = firstItem + FILE_LIST_LENGTH;
+		let fileList = this.files;
+		this.currentListDisplay = listNumber;
+		let firstItem: number = this.currentListDisplay * FILE_LIST_LENGTH;
+		let lastItem: number = firstItem + FILE_LIST_LENGTH;
 
-  	if (lastItem > fileList.length) {
-  		lastItem = fileList.length;
+		if (lastItem > fileList.length) {
+			lastItem = fileList.length;
 		}
 
-  	this.itemsToShow = [];
+		this.itemsToShow = [];
 
-  	for (let i = firstItem; i < lastItem; i++) {
+		for (let i = firstItem; i < lastItem; i++) {
 			this.itemsToShow.push(fileList[i]);
 		}
 	}
@@ -68,29 +69,29 @@ export class TorrentComponent implements OnInit {
 	}
 
 	setDownloadUrl(path:string): string {
-  	return `${this.serverUrl}/download/${encodeURIComponent(this.magnetLink)}/${encodeURIComponent(path)}`;
+		return `${this.serverUrl}/download/${encodeURIComponent(this.magnetLink)}/${encodeURIComponent(path)}`;
 	}
 
 	getPagesCount(): number {
-  	return Math.ceil(this.files.length/FILE_LIST_LENGTH);
+		return Math.ceil(this.files.length/FILE_LIST_LENGTH);
 	}
 
-  clearList(): void {
-    this.files = [];
-    this.itemsToShow = [];
-    this.magnetLink = '';
-  }
+	clearList(): void {
+		this.files = [];
+		this.itemsToShow = [];
+		this.magnetLink = '';
+	}
 
-  isLoading(): boolean {
-  	return this.loading;
+	isLoading(): boolean {
+		return this.loading;
 	}
 
 	getFiles(): object {
-  	return this.itemsToShow;
+		return this.itemsToShow;
 	}
 
 	getCurrentDisplayList(): number {
-  	return this.currentListDisplay;
+		return this.currentListDisplay;
 	}
 
 	getDummyArray(): any[] {
