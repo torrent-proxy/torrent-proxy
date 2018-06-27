@@ -8,11 +8,12 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "reformat": "prettier --write --config ./prettier.config.js './**/{*.ts,*.js}'"
   },
   "lint-staged": {
     "*.{js,ts}": [
-      "prettier --write --config ./prettier.config.js './**/{*.ts,*.js}'",
+      "npm run reformat",
       "git add"
     ]
   },
