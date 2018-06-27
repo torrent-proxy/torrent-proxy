@@ -15,11 +15,9 @@ import { RestClientService } from './rest-client.service';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
-
 export function HttpLoaderFactory(http: HttpClient) {
 	return new TranslateHttpLoader(http);
 }
-
 
 @NgModule({
 	declarations: [
@@ -28,7 +26,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 		TorrentComponent,
 		FooterComponent,
 		AboutUsComponent,
-		DonateComponent,
+		DonateComponent
 	],
 	imports: [
 		HttpClientModule,
@@ -41,11 +39,10 @@ export function HttpLoaderFactory(http: HttpClient) {
 				provide: TranslateLoader,
 				useFactory: HttpLoaderFactory,
 				deps: [HttpClient]
-
 			}
 		})
 	],
-	providers: [RestClientService , HttpClient],
+	providers: [RestClientService, HttpClient],
 	bootstrap: [AppComponent]
 })
 export class AppModule {}

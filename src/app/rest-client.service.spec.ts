@@ -11,7 +11,10 @@ describe('RestClientService', () => {
 		});
 	});
 
-	it('should be created', inject([RestClientService], (service: RestClientService) => {
-		expect(service).toBeTruthy();
-	}));
+	it('should be created', inject(
+		[RestClientService],
+		(service: RestClientService) => {
+			expect(service).toBeTruthy();
+		}
+	));
 });

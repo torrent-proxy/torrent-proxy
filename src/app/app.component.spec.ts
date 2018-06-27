@@ -8,10 +8,29 @@ import { AboutUsComponent } from './about-us/about-us.component';
 import { DonateComponent } from './donate/donate.component';
 import { FormsModule } from '@angular/forms';
 
-const routes = [{path: '', redirectTo: '/torrent', pathMatch: 'full', data: {title: 'Torrent proxy: Download'}},
-	{path: 'torrent', component: TorrentComponent, data: {title: 'Torrent proxy: Download'}},
-	{path: 'about-us', component: AboutUsComponent, data: {title: 'Torrent proxy: About Us'}},
-	{path: 'donate', component: DonateComponent, data: {title: 'Torrent proxy: Donate'}}];
+const routes = [
+	{
+		path: '',
+		redirectTo: '/torrent',
+		pathMatch: 'full',
+		data: { title: 'Torrent proxy: Download' }
+	},
+	{
+		path: 'torrent',
+		component: TorrentComponent,
+		data: { title: 'Torrent proxy: Download' }
+	},
+	{
+		path: 'about-us',
+		component: AboutUsComponent,
+		data: { title: 'Torrent proxy: About Us' }
+	},
+	{
+		path: 'donate',
+		component: DonateComponent,
+		data: { title: 'Torrent proxy: Donate' }
+	}
+];
 describe('AppComponent', () => {
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
@@ -21,10 +40,10 @@ describe('AppComponent', () => {
 				FooterComponent,
 				TorrentComponent,
 				AboutUsComponent,
-				DonateComponent,
+				DonateComponent
 			],
 			imports: [RouterTestingModule.withRoutes(routes), FormsModule],
-			providers: [ ]
+			providers: []
 		}).compileComponents();
 	}));
 	it('should create the app', async(() => {

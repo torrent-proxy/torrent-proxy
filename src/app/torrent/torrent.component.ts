@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { RestClientService } from '../rest-client.service';
 import { CONFIG } from '../config';
 
-
 const FILE_LIST_LENGTH = 10;
 
 @Component({
@@ -10,7 +9,6 @@ const FILE_LIST_LENGTH = 10;
 	templateUrl: './torrent.component.html',
 	styleUrls: ['./torrent.component.scss']
 })
-
 export class TorrentComponent implements OnInit {
 	private files: any[] = [];
 	private loading = false;
@@ -19,31 +17,27 @@ export class TorrentComponent implements OnInit {
 	private currentListDisplay = 0;
 	private itemsToShow: any[] = [];
 
+	constructor(private restClientService: RestClientService) {}
 
-	constructor( private restClientService: RestClientService) {
-
-	}
-
-	ngOnInit() {
-	}
+	ngOnInit() {}
 
 	buildFileList(magnet: string): void {
 		this.currentListDisplay = 0;
 		this.magnetLink = magnet;
 		this.loading = true;
-		this.getFileList()
-			.then(() => this.loading = false);
+		this.getFileList().then(() => (this.loading = false));
 	}
 
 	getFileList(): Promise<any> {
-		return (this.restClientService.getFileList(this.magnetLink)
-			.then(data => {
+		return this.restClientService
+			.getFileList(this.magnetLink)
+			.then((data) => {
 				this.files = data['files'];
 				this.setDisplayedFiles(this.currentListDisplay);
 			})
-			.catch(err => {
+			.catch((err) => {
 				console.log(err);
-			}));
+			});
 	}
 
 	setDisplayedFiles(listNumber: number): void {
@@ -78,15 +72,23 @@ export class TorrentComponent implements OnInit {
 	}
 
 	getFileName(path: string): string {
-		return (path.substr(0 , path.lastIndexOf('.'))).split(/[\\/]/).pop();
+		return path
+			.substr(0, path.lastIndexOf('.'))
+			.split(/[\\/]/)
+			.pop();
 	}
 
 	getFileType(path: string) {
-		return (path.substr(path.lastIndexOf('.') + 1, path.length)).split(/[\\/]/).pop();
+		return path
+			.substr(path.lastIndexOf('.') + 1, path.length)
+			.split(/[\\/]/)
+			.pop();
 	}
 
 	createDownloadUrl(path: string): string {
-		return `${this.serverUrl}/download/${encodeURIComponent(this.magnetLink)}/${encodeURIComponent(path)}`;
+		return `${this.serverUrl}/download/${encodeURIComponent(
+			this.magnetLink
+		)}/${encodeURIComponent(path)}`;
 	}
 
 	getPagesCount(): number {

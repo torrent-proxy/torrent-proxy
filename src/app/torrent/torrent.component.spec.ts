@@ -9,10 +9,9 @@ describe('TorrentComponent', () => {
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
-			declarations: [ TorrentComponent ],
-			imports: [ FormsModule ]
-		})
-		.compileComponents();
+			declarations: [TorrentComponent],
+			imports: [FormsModule]
+		}).compileComponents();
 	}));
 
 	beforeEach(() => {
