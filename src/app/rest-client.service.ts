@@ -1,10 +1,10 @@
 import { Injectable, NgModule } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { CONFIG } from "./config";
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { CONFIG } from './config';
 
 
 @NgModule({
-	imports: [ HttpClient ],
+	imports: [ HttpClientModule ],
 	providers: [ RestClientService ]
 })
 
@@ -16,7 +16,7 @@ export class RestClientService {
 	constructor(private _http: HttpClient) { }
 
 	getFileList(magnet): Promise<Object> {
-		let url = `${this.serverURL + '/rnd2/'}${encodeURIComponent(magnet)}`;
+		const url = `${this.serverURL + '/rnd2/'}${encodeURIComponent(magnet)}`;
 
 		return this._http.get(url)
 			.toPromise()
@@ -25,6 +25,6 @@ export class RestClientService {
 			})
 			.catch(err => {
 				return Promise.reject(err.error || 'Server error');
-			})
+			});
 	}
 }

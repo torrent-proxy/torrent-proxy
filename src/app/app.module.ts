@@ -10,10 +10,10 @@ import { TorrentComponent } from './torrent/torrent.component';
 import { FooterComponent } from './footer/footer.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { DonateComponent } from './donate/donate.component';
-import { HttpClient, HttpClientModule } from "@angular/common/http";
-import { RestClientService } from "./rest-client.service";
-import { TranslateLoader, TranslateModule } from "@ngx-translate/core";
-import { TranslateHttpLoader } from "@ngx-translate/http-loader";
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { RestClientService } from './rest-client.service';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -45,7 +45,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 			}
 		})
 	],
-	providers: [ RestClientService ],
+	providers: [ RestClientService, HttpClient ],
 	bootstrap: [ AppComponent ]
 })
 export class AppModule { }

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RestClientService } from '../rest-client.service';
-import { CONFIG } from "../config";
-import {style} from '@angular/animations';
+import { CONFIG } from '../config';
 
 
 const FILE_LIST_LENGTH = 10;
@@ -14,14 +13,14 @@ const FILE_LIST_LENGTH = 10;
 
 export class TorrentComponent implements OnInit {
 	private files: any[] = [];
-	private loading: boolean = false;
-	private magnetLink: string = '';
+	private loading = false;
+	private magnetLink = '';
 	private serverUrl: string = CONFIG.BACKEND_URL;
-	private currentListDisplay: number = 0;
+	private currentListDisplay = 0;
 	private itemsToShow: any[] = [];
 
 
-	constructor( private restClientService : RestClientService) {
+	constructor( private restClientService: RestClientService) {
 
 	}
 
@@ -33,10 +32,10 @@ export class TorrentComponent implements OnInit {
 		this.magnetLink = magnet;
 		this.loading = true;
 		this.getFileList()
-			.then(() => this.loading = false)
+			.then(() => this.loading = false);
 	}
 
-	getFileList():Promise<any> {
+	getFileList(): Promise<any> {
 		return (this.restClientService.getFileList(this.magnetLink)
 			.then(data => {
 				this.files = data['files'];
@@ -44,13 +43,13 @@ export class TorrentComponent implements OnInit {
 			})
 			.catch(err => {
 				console.log(err);
-			}))
+			}));
 	}
 
-	setDisplayedFiles(listNumber: number):void {
-		let fileList = this.files;
+	setDisplayedFiles(listNumber: number): void {
+		const fileList = this.files;
 		this.currentListDisplay = listNumber;
-		let firstItem: number = this.currentListDisplay * FILE_LIST_LENGTH;
+		const firstItem: number = this.currentListDisplay * FILE_LIST_LENGTH;
 		let lastItem: number = firstItem + FILE_LIST_LENGTH;
 
 		if (lastItem > fileList.length) {
@@ -65,30 +64,33 @@ export class TorrentComponent implements OnInit {
 	}
 
 	startFileDownload(path) {
-		let url = this.setDownloadUrl(path);
-		let a = document.createElement('a');
+		const url = this.createDownloadUrl(path);
+		const a = document.createElement('a');
+
 		document.body.appendChild(a);
-		a.setAttribute('style','display: none;');
+
+		a.setAttribute('style', 'display: none;');
 		a.href = url;
 		a.download = this.getFileName(path);
+
 		a.click();
 		a.remove();
 	}
 
 	getFileName(path: string): string {
-		return (path.substr(0 ,path.lastIndexOf("."))).split(/[\\/]/).pop();
+		return (path.substr(0 , path.lastIndexOf('.'))).split(/[\\/]/).pop();
 	}
 
-	getFileType(path:string) {
-		return (path.substr(path.lastIndexOf(".")+1, path.length)).split(/[\\/]/).pop();
+	getFileType(path: string) {
+		return (path.substr(path.lastIndexOf('.') + 1, path.length)).split(/[\\/]/).pop();
 	}
 
-	setDownloadUrl(path:string): string {
+	createDownloadUrl(path: string): string {
 		return `${this.serverUrl}/download/${encodeURIComponent(this.magnetLink)}/${encodeURIComponent(path)}`;
 	}
 
 	getPagesCount(): number {
-		return Math.ceil(this.files.length/FILE_LIST_LENGTH);
+		return Math.ceil(this.files.length / FILE_LIST_LENGTH);
 	}
 
 	clearList(): void {
@@ -101,7 +103,7 @@ export class TorrentComponent implements OnInit {
 		return this.loading;
 	}
 
-	getFiles(): object {
+	getFiles(): Array<any> {
 		return this.itemsToShow;
 	}
 

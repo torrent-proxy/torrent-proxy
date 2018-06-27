@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter, map, mergeMap } from 'rxjs/internal/operators';
-import { Title } from "@angular/platform-browser";
-import { TranslateService } from "@ngx-translate/core";
+import { Title } from '@angular/platform-browser';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -13,7 +13,7 @@ import { TranslateService } from "@ngx-translate/core";
 
 export class HeaderComponent implements OnInit {
 	constructor(
-		private router: Router,
+		public router: Router,
 		private activatedRoute: ActivatedRoute,
 		private titleService: Title,
 		private translate: TranslateService) {
@@ -21,14 +21,16 @@ export class HeaderComponent implements OnInit {
 		translate.use('en');
 	}
 
-	private _currentLanguage: string = 'en';
+	private _currentLanguage = 'en';
 
-	ngOnInit(){
+	ngOnInit() {
 		this.router.events
 			.pipe(filter((event) => event instanceof NavigationEnd))
 			.pipe(map(() => this.activatedRoute))
 			.pipe(map((route) => {
-				while (route.firstChild) route = route.firstChild;
+				while (route.firstChild) {
+					route = route.firstChild;
+				}
 				return route;
 			}))
 			.pipe(filter((route) => route.outlet === 'primary'))
