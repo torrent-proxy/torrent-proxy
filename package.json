@@ -18,6 +18,7 @@
   },
   "dependencies": {
     "express": "^4.16.2",
+    "magnet-uri": "^5.2.4",
     "node-fetch": "^1.7.3",
     "torrent-stream": "^1.0.3",
     "tracker-proxy": "git+ssh://git@github.com:reeFridge/tracker-proxy.git#develop"
