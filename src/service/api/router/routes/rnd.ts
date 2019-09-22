@@ -41,34 +41,6 @@ export default () => {
 			const stream = file.createReadStream();
 			stream.pipe(res);
 		},
-		downloadWithBTFS: (incomingMessage, res) => {
-			const {filePath, magnet} = incomingMessage.params;
-			const hash = magnetURIDecode(magnet).infoHash;
-			const mountPoint = join(`/Users/oleg/mounts/`, hash);
-
-			console.log({filePath, magnet});
-
-			return fsStat(mountPoint)
-				.catch((err) => {
-					if (err.code === `ENOENT`) {
-						return fsMkdir(mountPoint);
-					} else if(err.code === `EEXIST`) {
-						// TODO: hz
-					}
-				})
-				.then(() => mount({magnet, mountPoint}))
-				.then(() => {
-					const p = join(mountPoint, filePath);
-					console.log({path: p});
-
-					const stream = fs.createReadStream(p);
-					stream.pipe(res);
-				})
-				.catch((err) => {
-					console.error({err});
-					process.exit(1);
-				});
-		},
 		get3: (incomingMessage, res) => {
 			res.send(fs.readFileSync(__dirname + '/../../../../../../index.html'));
 		}
