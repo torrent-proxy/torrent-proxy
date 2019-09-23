@@ -12,6 +12,7 @@ export default class Router {
 		expressApp.get('/popcorn/*', (incomingMessage, res) => popcornTimeRoute(popcornTimeApi).get(incomingMessage, res));
 		expressApp.get('/rnd/', (incomingMessage, res) => rnd().get(incomingMessage, res));
 		expressApp.get('/rnd2/:magnet', (incomingMessage, res) => rnd().get2(incomingMessage, res));
+		expressApp.get('/getMetadata/:magnet', (incomingMessage, res) => rnd().getMetadata(incomingMessage, res));
 		expressApp.get('/download/:magnet/:filePath', (incomingMessage, res) => rnd().download(incomingMessage, res));
 		expressApp.get('/rnd3/', (incomingMessage, res) => rnd().get3(incomingMessage, res));
 	};

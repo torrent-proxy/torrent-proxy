@@ -17,6 +17,7 @@
     "start": "node ./lib/src/"
   },
   "dependencies": {
+    "bt-stream": "github:torrent-proxy/bt-stream#master",
     "express": "^4.16.2",
     "node-fetch": "^1.7.3",
     "torrent-stream": "^1.0.3",
