@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
@@ -28,7 +27,6 @@ export function HttpLoaderFactory(http: HttpClient) {
 	],
 	imports: [
 		HttpClientModule,
-		FlexLayoutModule,
 		BrowserModule,
 		AppRoutingModule,
 		FormsModule,
