@@ -1,11 +1,12 @@
 (function(window) {
+	const HASH = `2dca8e028d7ff766162a9cbc2002ce8c6ca04555`;
 	const createList = (files) => {
-		const li = window.document.createElement('li');
+		const li = window.document.createElement('ul');
 		files.forEach((file) => {
-			const ul = window.document.createElement('ul');
+			const ul = window.document.createElement('li');
 			ul.textContent = file.path;
 			ul.addEventListener('click', () => {
-				const magnet = encodeURIComponent('magnet:?xt=urn:btih:36e7b4f8352da088bca8a6716ce19c531883a045&dn=rutor.info_Savoy+Brown+-+Witchy+Feelin\'+(2017)+MP3+от+Vanila&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce');
+				const magnet = encodeURIComponent(`magnet:?xt=urn:btih:${HASH}`);
 				const filePath = encodeURIComponent(file.path);
 
 				const anchor = document.createElement('a');
@@ -21,10 +22,11 @@
 		});
 	};
 
-	fetch(`http://localhost:8811/rnd2/magnet:?xt=urn:btih:36e7b4f8352da088bca8a6716ce19c531883a045&dn=rutor.info_Savoy+Brown+-+Witchy+Feelin'+(2017)+MP3+от+Vanila&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce`)
+	fetch(`http://localhost:8811/getMetadata/${HASH}`)
 		.then((response) => response.json())
 		.then((response) => {
 			const files = response['files'];
 			return createList(files);
 		})
+		.catch((err) => console.error(err));
 })(window);

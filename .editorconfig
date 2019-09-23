@@ -10,11 +10,11 @@ insert_final_newline = true
 
 # Matches multiple files with brace expansion notation
 # Set default charset
-[*.{ts,md}]
+[*.{ts,js,md}]
 charset = utf-8
 
 # Indentation override for all JS under lib directory
-[**.ts]
+[*.{ts,js}]
 indent_style = tab
 
 # Matches the exact files either package.json or .travis.yml

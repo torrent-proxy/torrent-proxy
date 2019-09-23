@@ -1,14 +1,10 @@
 import * as fs from 'fs';
 import * as torrentStream from 'torrent-stream';
-import {promisify} from 'util';
-
-const BTStream = require('bt-stream');
-const magnetURIDecode = require('magnet-uri');
-
-const fsStat = promisify(fs.stat);
-const fsMkdir = promisify(fs.mkdir);
-
+import * as BTStream from 'bt-stream'
 let engine = null;
+let torrent = null;
+
+
 
 export default () => {
 	return {
@@ -17,23 +13,57 @@ export default () => {
 			return stream.pipe(res);
 		},
 		get2: (incomingMessage, res) => {
-			const magnet = decodeURIComponent(incomingMessage.originalUrl.substr('/load/'.length));
+			const magnet = decodeURIComponent(incomingMessage.originalUrl.substr('/getMetadata/'.length));
 			console.log(magnet);
 			engine = torrentStream(magnet);
 
 			engine.on('ready', function () {
 				engine.files.forEach(function (file, i) {
-					console.log('file:', file);
+					// console.log('file:', file);
 
 					// const stream = file.createReadStream();
 					// stream.pipe(res);
 					// stream is readable stream to containing the file content
 				});
-				res.send({files: engine.files.map((file) => ({name: file.name, path: file.path}))});
-			});
+				const files = engine.files.map((file) => ({name: file.name, path: file.path}));
 
+				console.log({files});
+				res.send({files});
+			});
+		},
+		getMetadata: (incomingMessage, res) => {
+			const magnet = decodeURIComponent(incomingMessage.originalUrl.substr('/getMetadata/'.length));
+			console.log(`getMetadata`, {url: incomingMessage.originalUrl});
+			console.log(`getMetadata`, {magnet});
+			const btStream = new BTStream({dhtPort: Math.floor(Math.random() * 10000)});
+
+			console.log({magnet})
+			return btStream.getMetaData(magnet)
+				.then((_torrent) => {
+					torrent = _torrent;
+					// console.log(`proxy:getMetadata`, {torrent});
+					res.send({files: torrent.files.map((file) => ({name: file.name, path: file.path}))});
+				})
+				.catch((err) => console.error({err}));
 		},
 		download: (incomingMessage, res) => {
+			console.log(`proxy:download`);
+			const {filePath, magnet} = incomingMessage.params;
+			console.log({filePath});
+			console.log(incomingMessage.params.magnet);
+
+			const btStream = new BTStream({dhtPort: Math.floor(Math.random() * 10000)});
+
+			console.log({magnet})
+			console.log(`proxy:download:before_getMetaData`);
+			return btStream.getMetaData(magnet)
+				.then((torrent) => {
+					console.log(`proxy:download:after_getMetaData`);
+					const stream = btStream.downloadFileByPath({torrent, filePath});
+					stream.pipe(res);
+				});
+		},
+		downloadOld: (incomingMessage, res) => {
 			console.log(incomingMessage.params.filePath);
 			console.log(incomingMessage.params.magnet);
 
