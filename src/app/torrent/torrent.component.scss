@@ -3,7 +3,7 @@ app-torrent{
 }
 .content {
 
-  .send-form {
+  .magnet {
     display: flex;
     min-width: 40%;
     min-height: 35%;
@@ -13,54 +13,18 @@ app-torrent{
     justify-content: space-between;
     padding: 0 20px 0 20px;
 
-    .link-wrapper {
+    &__form {
       display: flex;
       width: 100%;
     }
 
-    .link-input {
+    &__input {
       width: 65%;
       padding: 10px;
       margin: 20px;
     }
 
-    .files-wrapper {
-      display: flex;
-      flex-flow: column;
-      width: 100%;
-
-      .torrent-item {
-        padding: 5px;
-        display: flex;
-        border: 1px solid #A9A9A9;
-
-        &.head {
-          background-color: #B3B3B3;
-        }
-
-        &.odd {
-          background-color: #D3D3D3;
-          border-bottom: none;
-          border-top: none;
-
-          &.last {
-            border-bottom: 1px solid #A9A9A9;
-          }
-        }
-
-        .name {
-          width: 15%;
-          border-right: 1px solid #A9A9A9;
-          margin-right: 10px;
-        }
-      }
-      .torrent-item:hover {
-        color: #00b067;
-        text-decoration: underline;
-      }
-    }
-
-    .button-holder {
+    &__buttons {
       display: flex;
       padding: 20px;
       width: 20%;
@@ -114,6 +78,43 @@ app-torrent{
         background-color: #FD7A12;
 
       }
+    }
+    .filesWrapper {
+      display: flex;
+      flex-flow: column;
+      width: 100%;
+
+      &__torrentItem {
+        padding: 5px;
+        display: flex;
+        border: 1px solid #A9A9A9;
+
+        &.head {
+          background-color: #B3B3B3;
+        }
+
+        &.odd {
+          background-color: #D3D3D3;
+          border-bottom: none;
+          border-top: none;
+
+          &.last {
+            border-bottom: 1px solid #A9A9A9;
+          }
+        }
+
+        &:hover {
+          color: #00b067;
+          text-decoration: underline;
+        }
+      }
+
+      &__fileName {
+        width: 15%;
+        border-right: 1px solid #A9A9A9;
+        margin-right: 10px;
+      }
+
     }
   }
   .load{

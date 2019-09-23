@@ -1,10 +1,12 @@
+@import "../styles";
+
 html {
   height: 100%;
 }
 body {
   margin: 0;
 }
-.wrapper {
+.mainWrapper {
   display: flex;
   flex-flow: column;
   justify-content: flex-start;
@@ -14,6 +16,82 @@ body {
   .content {
     margin: 2% 3% 5% 3%;
     overflow: scroll;
+  }
+}
+
+.header {
+  &__languages {
+    display: flex;
+    position: relative;
+    float: right;
+    padding: 3px;
+  }
+
+  &__langUnit {
+    padding-right: 5px;
+    padding-left: 5px;
+    cursor: pointer;
+
+    &:first-child {
+      border-right: solid $gray 1px;
+    }
+
+    &:hover {
+      color: $blue;
+      cursor: pointer;
+    }
+
+    &-active {
+      text-decoration: underline;
+      color: $shamrock-dark;
+      cursor: default;
+
+      &:hover {
+        color: $shamrock-dark;
+        cursor: default;
+      }
+    }
+  }
+
+  &__logo {
+    display: flex;
+    justify-content: center;
+    margin: 10px 70px;
+  }
+}
+
+.navbar {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+
+  &__button {
+    padding: 10px;
+    border: 1px solid $gray;
+    border-left: none;
+    background-color: $shamrock;
+    cursor: pointer;
+
+    &:hover{
+      background-color: $shamrock-light;
+    }
+
+    &-opened {
+      background-color: $shamrock-dark;
+
+      &:hover {
+        background-color: $shamrock-dark;
+      }
+    }
+  }
+
+  &__button:first-child{
+    border-left: 1px solid $gray;
+  }
+
+  & a {
+    text-decoration: none;
+    color: $black;
   }
 }
 

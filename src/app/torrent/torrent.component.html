@@ -1,8 +1,8 @@
 <div class="content">
-  <form #linkForm="ngForm" class="send-form">
-    <div class="link-wrapper">
-      <input type="url" [(ngModel)]="linkForm.url" name="magnet" class="link-input" placeholder="{{'MAGNET_LINK_PLACEHOLDER' | translate}}">
-      <div class="button-holder">
+  <form #linkForm="ngForm" class="magnet">
+    <div class="magnet__form">
+      <input type="text" [(ngModel)]="linkForm.url" name="magnet" class="magnet__input" placeholder="{{'MAGNET_LINK_PLACEHOLDER' | translate}}">
+      <div class="magnet__buttons">
         <div type="submit" class="button send" [ngClass]="[!isLoading() ? '' : 'disabled']"
              (click)="buildFileList(linkForm.url)">
           {{"SEND_BUTTON" | translate}}
@@ -12,18 +12,18 @@
 
     </div>
 
-    <div class="files-wrapper" *ngIf="getFiles().length">
-      <div class="torrent-item head">
-        <div class="name">
+    <div class="filesWrapper" *ngIf="getFiles().length">
+      <div class="filesWrapper__torrentItem head">
+        <div class="filesWrapper__fileName">
           {{'FILE_NAME' | translate}}
         </div>
-        <div class="file-type>">
+        <div class="filesWrapper__fileType>">
           {{'FILE_TYPE' | translate}}
         </div>
       </div>
-      <div class="torrent-item" *ngFor="let file of getFiles(); let isOdd = odd; let isLast = last;"
+      <div class="filesWrapper__torrentItem" *ngFor="let file of getFiles(); let isOdd = odd; let isLast = last;"
            [class.odd]="isOdd" [class.last]="isLast" (click)="startFileDownload(file.path)">
-        <div class="name">
+        <div class="filesWrapper__fileName">
           {{getFileName(file.path)}}
         </div>
         <div class="file-type>">{{getFileType(file.path)}}</div>
