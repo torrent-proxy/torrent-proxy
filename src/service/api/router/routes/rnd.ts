@@ -32,16 +32,19 @@ export default () => {
 			});
 		},
 		getMetadata: (incomingMessage, res) => {
-			const magnet = decodeURIComponent(incomingMessage.originalUrl.substr('/getMetadata/'.length));
+			const originalUrl = incomingMessage.originalUrl;
+			const magnet = decodeURIComponent(originalUrl.substr(originalUrl.indexOf('/getMetadata/') + '/getMetadata/'.length));
 			console.log(`getMetadata`, {url: incomingMessage.originalUrl});
 			console.log(`getMetadata`, {magnet});
+			console.log('magnet: ', magnet);
 			const btStream = new BTStream({dhtPort: Math.floor(Math.random() * 10000)});
 
-			console.log({magnet})
+			console.log({magnet});
 			return btStream.getMetaData(magnet)
 				.then((_torrent) => {
 					torrent = _torrent;
 					// console.log(`proxy:getMetadata`, {torrent});
+					console.log('files:', torrent.files);
 					res.send({files: torrent.files.map((file) => ({name: file.name, path: file.path}))});
 				})
 				.catch((err) => console.error({err}));

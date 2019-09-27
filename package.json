@@ -2,10 +2,10 @@
   "name": "torrent-proxy-server",
   "version": "0.1.0",
   "description": "",
-  "main": "index.js",
+  "main": "lib/index.js",
   "engines": {
-    "node": "10.3.0",
-    "npm": "6.1.0"
+    "node": "10",
+    "npm": "6.9.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -14,11 +14,17 @@
     "build": "tsc",
     "watch": "npm run prebuild && tsc-watch --onSuccess \"npm run start\" --onFailure \"echo Beep! Compilation Failed\"",
     "prestart": "npm run build",
-    "start": "node ./lib/src/"
+    "serve": "npm run build && firebase serve --only functions",
+    "shell": "npm run build && firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
   },
   "dependencies": {
     "bt-stream": "github:torrent-proxy/bt-stream#master",
+    "cors": "^2.8.5",
     "express": "^4.16.2",
+    "firebase-functions": "^3.2.0",
     "node-fetch": "^1.7.3",
     "torrent-stream": "^1.0.3",
     "tracker-proxy": "git+ssh://git@github.com:reeFridge/tracker-proxy.git#develop"
@@ -28,6 +34,7 @@
   "devDependencies": {
     "@types/express": "^4.11.0",
     "@types/node": "^8.5.2",
+    "firebase-admin": "^8.6.0",
     "tsc-watch": "^1.0.15",
     "typescript": "2.9.1"
   }

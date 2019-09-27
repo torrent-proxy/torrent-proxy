@@ -7,11 +7,6 @@ import search from './routes/search';
 
 export default class Router {
 	constructor(expressApp: any, torrentProxy: TorrentProxyServer, popcornTimeApi: IProxy) {
-		expressApp.use(function(req, res, next) {
-			res.header("Access-Control-Allow-Origin", "*");
-			res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-			next();
-		});
 		expressApp.get('/load/:magnet', (...args) => load(torrentProxy).get(...args));
 		expressApp.get('/search/:query', (...args) => search(torrentProxy).get(...args));
 		expressApp.get('/popcorn/*', (incomingMessage, res) => popcornTimeRoute(popcornTimeApi).get(incomingMessage, res));
