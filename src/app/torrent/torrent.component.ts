@@ -65,6 +65,7 @@ export class TorrentComponent implements OnInit {
 
 		a.setAttribute('style', 'display: none;');
 		a.href = url;
+		a.target = '_blank';
 		a.download = this.getFileName(path);
 
 		a.click();

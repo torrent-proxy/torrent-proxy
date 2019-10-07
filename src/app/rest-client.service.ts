@@ -13,7 +13,9 @@ export class RestClientService {
 	constructor(private _http: HttpClient) {}
 
 	getFileList(magnet): Promise<Object> {
-		const url = `${this.serverURL + '/rnd2/'}${encodeURIComponent(magnet)}`;
+		const url = `${this.serverURL + '/getMetadata/'}${encodeURIComponent(
+			magnet
+		)}`;
 
 		return this._http
 			.get(url)
