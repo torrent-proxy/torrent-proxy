@@ -1,9 +1,13 @@
 import * as React from "react";
 import Header from "../header/header.component";
+import SearchBox from "../search-box/search-box.component";
 
 const App: React.FunctionComponent = () => {
   return (
-    <Header />
+    <React.Fragment>
+      <Header />
+      <SearchBox />
+    </React.Fragment>
   );
 };
 
