@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import Header from "../header/header.component";
 import SearchBox from "../search-box/search-box.component";
 import SearchResults from "../search-results/search-results.component";

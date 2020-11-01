@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import Navigation from "../navigation/navigation.component";
 import ColorTheme from "../color-theme/color-theme.component";
 
