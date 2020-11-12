@@ -1,30 +1,53 @@
-import DownloadButton from './download-button.component';
+import React from "react";
+import {configure, shallow} from "enzyme";
+import Adapter from "enzyme-adapter-react-16";
+import DownloadButton from "../download-button/download-button.component";
 
+configure({
+  adapter: new Adapter(),
+});
 
+const mockEvent = {
+  preventDefault() {
+    () => {};
+  }
+};
 
 describe(`DownloadButton`, () => {
-  it(`Когда кликнешь по кнопке отработает обработчик`, () => {
-    const onclick = jest.fn();
+  it(`DownloadButton should be clicked`, () => {
+    const onDownloadButtonClick = jest.fn();
+    const onDownloadButtonHover = jest.fn();
 
-    const downloadButton = renderer.create(<DownloadButton
-      onClick={onclick}
-    />);
+    const downloadButton = shallow(
+      <DownloadButton
+      onDownloadButtonClick={onDownloadButtonClick}
+      onDownloadButtonHover={onDownloadButtonHover}
+      />
+    );
 
-    downloadButton.simulate(`click`);
+    const downloadButtonItem = downloadButton.find('.download-button');
 
-    expect(onclick).toBeCalledTimes(1);
+    downloadButtonItem.simulate(`click`, mockEvent);
+    expect(onDownloadButtonClick).toHaveBeenCalledTimes(1);
   });
 
-  it(`Когда курсор над кнопкой, то кнопка подсвечивается`, () => {
-    const onclick = jest.fn();
 
-    const downloadButton = renderer.create(<DownloadButton
-      onClick={onclick}
-    />);
+  it(`DownloadButton should be hovered`, () => {
+    const onDownloadButtonClick = jest.fn();
+    const onDownloadButtonHover = jest.fn();
 
-    downloadButton.simulate(`hover`);
-    downloadButton.update();
+    const downloadButton = shallow(
+      <DownloadButton
+      onDownloadButtonClick={onDownloadButtonClick}
+      onDownloadButtonHover={onDownloadButtonHover}
+      />
+    );
 
-    expect(downloadButton).toEqual();
+    const downloadButtonItem = downloadButton.find('.download-button');
+
+    downloadButtonItem.simulate(`mouseOver`, mockEvent);
+    downloadButtonItem.update();
+
+    expect(onDownloadButtonHover).toHaveBeenCalledTimes(1);
   });
 });

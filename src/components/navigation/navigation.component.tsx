@@ -1,19 +1,23 @@
 import React from "react";
+import NavigationItem from "../navigation-item/navigation-item.component";
 
 const Navigation: React.FunctionComponent = () => {
+  const menuItems = [`Main`, `About`, `Contacts`];
+
   return (
     <React.Fragment>
       <nav className="navigation">
         <ul className="navigation__list">
-          <li className="navigation__item">
-            <a className="navigation__link">Main</a>
-          </li>
-          <li className="navigation__item">
-            <a className="navigation__link">About</a>
-          </li>
-          <li className="navigation__item">
-            <a className="navigation__link">Contacts</a>
-          </li>
+          {menuItems.map((item, index) => {
+            return (
+              <NavigationItem
+              key={`${item}-${index}`}
+              navigationItem={item}
+              />
+            );
+          })
+
+          };
         </ul>
       </nav>
     </React.Fragment>
