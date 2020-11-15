@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import NavigationItem from "../navigation-item/navigation-item.component";
 
 const Navigation: React.FunctionComponent = () => {
@@ -16,8 +16,7 @@ const Navigation: React.FunctionComponent = () => {
               />
             );
           })
-
-          };
+          }
         </ul>
       </nav>
     </React.Fragment>

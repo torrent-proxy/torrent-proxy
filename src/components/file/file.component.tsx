@@ -1,25 +1,22 @@
-import React from "react";
+import * as React from "react";
+import {FileInfo} from "../../types";
 
 interface Props {
-  isToDownload: boolean;
-  fileName: string;
-  fileSize: number;
-  isPreviewable: boolean;
+  file: FileInfo;
 }
 
 const File: React.FunctionComponent<Props> = (props: Props) => {
-  const {isToDownload, fileName, fileSize, isPreviewable} = props;
-  const toDownload = isToDownload ? `checked` : ``;
+  const {file: {fileName, fileSize, isPreviewable}} = props;
 
   return (
     <tr className="table__row">
       <td className="table__cell">
-        <input className="table__checkbox" type="checkbox" {...toDownload} />
-        </td>
-        <td className="table__cell">{fileName}</td>
-  <td className="table__cell">{fileSize}</td>
-  <td className="table__cell">{isPreviewable}</td>
-        </tr>
+        <input className="table__checkbox" type="checkbox" />
+      </td>
+      <td className="table__cell">{fileName}</td>
+      <td className="table__cell">{fileSize}</td>
+      <td className="table__cell">{isPreviewable ? `Available` : ``}</td>
+    </tr>
   );
 };
 

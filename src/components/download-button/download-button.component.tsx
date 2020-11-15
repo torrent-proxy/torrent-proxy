@@ -1,18 +1,10 @@
-import React from "react";
+import * as React from "react";
 
-interface Props {
-  onDownloadButtonClick: () => void;
-  onDownloadButtonHover: () => void;
-}
-
-const DownloadButton: React.FunctionComponent<Props> = (props: Props) => {
-  const {onDownloadButtonClick, onDownloadButtonHover} = props;
+const DownloadButton: React.FunctionComponent = () => {
 
   return (
     <button
       className="download-button"
-      onClick={onDownloadButtonClick}
-      onMouseOver={onDownloadButtonHover}
     >Download</button>
   );
 };
