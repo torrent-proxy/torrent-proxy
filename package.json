@@ -5,11 +5,11 @@
   "description": "Torrent Proxy App",
   "scripts": {
     "build": "webpack --mode production",
-    "eslint": "npm run eslint.js && npm run eslint.ts",
-    "eslint.js": "eslint --ext .jsx --ext .js src/",
-    "eslint.ts": "eslint --config .eslintrc-ts.yml --ext .tsx src/",
+    "lint": "npm run lint.js && npm run lint.ts",
+    "lint.js": "eslint --ext .jsx --ext .js src/",
+    "lint.ts": "eslint --config .eslintrc-ts.yml --ext .tsx src/",
     "start": "webpack-dev-server",
-    "test": "npm run eslint && npm run test.jest",
+    "test": "npm run lint && npm run test.jest",
     "test.jest": "jest"
   },
   "devDependencies": {
