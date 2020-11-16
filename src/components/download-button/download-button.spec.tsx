@@ -7,27 +7,21 @@ configure({
   adapter: new Adapter(),
 });
 
-const mockEvent = {
-  preventDefault() {
-    () => {};
-  }
-};
-
 describe(`DownloadButton`, () => {
   it(`DownloadButton should be clicked`, () => {
     const onDownloadButtonClick = jest.fn();
     const onDownloadButtonHover = jest.fn();
 
     const downloadButton = shallow(
-      <DownloadButton
-      onDownloadButtonClick={onDownloadButtonClick}
-      onDownloadButtonHover={onDownloadButtonHover}
-      />
+        <DownloadButton
+          onDownloadButtonClick={onDownloadButtonClick}
+          onDownloadButtonHover={onDownloadButtonHover}
+        />
     );
 
-    const downloadButtonItem = downloadButton.find('.download-button');
+    const downloadButtonItem = downloadButton.find(`.download-button`);
 
-    downloadButtonItem.simulate(`click`, mockEvent);
+    downloadButtonItem.simulate(`click`);
     expect(onDownloadButtonClick).toHaveBeenCalledTimes(1);
   });
 
@@ -37,15 +31,15 @@ describe(`DownloadButton`, () => {
     const onDownloadButtonHover = jest.fn();
 
     const downloadButton = shallow(
-      <DownloadButton
-      onDownloadButtonClick={onDownloadButtonClick}
-      onDownloadButtonHover={onDownloadButtonHover}
-      />
+        <DownloadButton
+          onDownloadButtonClick={onDownloadButtonClick}
+          onDownloadButtonHover={onDownloadButtonHover}
+        />
     );
 
-    const downloadButtonItem = downloadButton.find('.download-button');
+    const downloadButtonItem = downloadButton.find(`.download-button`);
 
-    downloadButtonItem.simulate(`mouseOver`, mockEvent);
+    downloadButtonItem.simulate(`mouseOver`);
 
     expect(onDownloadButtonHover).toHaveBeenCalledTimes(1);
   });

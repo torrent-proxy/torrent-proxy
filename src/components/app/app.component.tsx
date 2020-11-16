@@ -14,8 +14,8 @@ const App: React.FunctionComponent = () => {
       <SearchBox />
       <SearchResults />
       <DownloadButton
-      onDownloadButtonClick={onDownloadButtonClick}
-      onDownloadButtonHover={onDownloadButtonHover}
+        onDownloadButtonClick={onDownloadButtonClick}
+        onDownloadButtonHover={onDownloadButtonHover}
       />
     </React.Fragment>
   );

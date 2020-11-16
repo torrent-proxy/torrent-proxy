@@ -8,25 +8,25 @@ const SearchResults: React.FunctionComponent = () => {
     <React.Fragment>
       <table className="search-results__table table">
         <thead>
-        <tr className="table__row table__row--header">
-          <th className="table__cell table__cell--header">
-            <input className="table__checkbox" type="checkbox" />
-          </th>
-          <th className="table__cell table__cell--header">File name</th>
-          <th className="table__cell table__cell--header">Size</th>
-          <th className="table__cell table__cell--header">Preview</th>
-        </tr>
+          <tr className="table__row table__row--header">
+            <th className="table__cell table__cell--header">
+              <input className="table__checkbox" type="checkbox" />
+            </th>
+            <th className="table__cell table__cell--header">File name</th>
+            <th className="table__cell table__cell--header">Size</th>
+            <th className="table__cell table__cell--header">Preview</th>
+          </tr>
         </thead>
         <tbody>
-        {files.map((file) => {
-          return (
-            <File
-            key={file.id}
-            file={file}
-            />
-          )
-        })
-        }
+          {files.map((file) => {
+            return (
+              <File
+                key={file.id}
+                file={file}
+              />
+            );
+          })
+          }
         </tbody>
       </table>
     </React.Fragment>

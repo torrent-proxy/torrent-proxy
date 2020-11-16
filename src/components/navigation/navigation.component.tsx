@@ -11,8 +11,8 @@ const Navigation: React.FunctionComponent = () => {
           {menuItems.map((item, index) => {
             return (
               <NavigationItem
-              key={`${item}-${index}`}
-              navigationItem={item}
+                key={`${item}-${index}`}
+                navigationItem={item}
               />
             );
           })
