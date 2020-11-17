@@ -1,14 +1,14 @@
 import * as React from "react";
 import NavigationItem from "../navigation-item/navigation-item.component";
 
-const menuItems = [`Main`, `About`, `Contacts`];
+const MENU_ITEMS = [`Main`, `About`, `Contacts`];
 
 const Navigation: React.FunctionComponent = () => {
   return (
     <React.Fragment>
       <nav className="navigation">
         <ul className="navigation__list">
-          {menuItems.map((item, index) => {
+          {MENU_ITEMS.map((item, index) => {
             return (
               <NavigationItem
                 key={`${item}-${index}`}
