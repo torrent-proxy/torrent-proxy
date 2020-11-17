@@ -1,5 +1,11 @@
 import * as React from "react";
-import {FileInfo} from "../../types";
+
+interface FileInfo {
+  fileName: string;
+  fileSize: number;
+  isPreviewable: boolean;
+  id: number;
+}
 
 interface Props {
   file: FileInfo;

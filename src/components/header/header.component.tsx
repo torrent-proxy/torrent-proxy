@@ -3,7 +3,6 @@ import Navigation from "../navigation/navigation.component";
 import ColorTheme from "../color-theme/color-theme.component";
 
 const Header: React.FunctionComponent = () => {
-
   return (
     <React.Fragment>
       <a className="header__logo">

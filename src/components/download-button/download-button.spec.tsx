@@ -8,7 +8,7 @@ configure({
 });
 
 describe(`DownloadButton`, () => {
-  it(`DownloadButton should be clicked`, () => {
+  it(`Should be clicked`, () => {
     const onDownloadButtonClick = jest.fn();
     const onDownloadButtonHover = jest.fn();
 
@@ -26,7 +26,7 @@ describe(`DownloadButton`, () => {
   });
 
 
-  it(`DownloadButton should be hovered`, () => {
+  it(`Should be hovered`, () => {
     const onDownloadButtonClick = jest.fn();
     const onDownloadButtonHover = jest.fn();
 

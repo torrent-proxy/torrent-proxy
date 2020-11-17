@@ -1,9 +1,9 @@
 import * as React from "react";
 import NavigationItem from "../navigation-item/navigation-item.component";
 
-const Navigation: React.FunctionComponent = () => {
-  const menuItems = [`Main`, `About`, `Contacts`];
+const menuItems = [`Main`, `About`, `Contacts`];
 
+const Navigation: React.FunctionComponent = () => {
   return (
     <React.Fragment>
       <nav className="navigation">
