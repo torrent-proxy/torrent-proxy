@@ -1,7 +1,6 @@
 import * as React from "react";
 
 const SearchBox: React.FunctionComponent = () => {
-
   return (
     <React.Fragment>
       <input
