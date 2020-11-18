@@ -1,4 +1,5 @@
 import * as React from "react";
+
 import NavigationItem from "../navigation-item/navigation-item.component";
 
 const MENU_ITEMS = [`Main`, `About`, `Contacts`];

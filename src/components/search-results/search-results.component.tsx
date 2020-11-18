@@ -1,6 +1,7 @@
 import * as React from "react";
-import File from "../file/file.component";
+
 import {files} from "../../mocks/files";
+import File from "../file/file.component";
 
 const SearchResults: React.FunctionComponent = () => {
 

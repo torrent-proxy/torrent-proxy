@@ -12,9 +12,13 @@ parserOptions:
   ecmaVersion: 6
   sourceType: module
 
-plugins: ['react']
+plugins: ['react', 'simple-import-sort']
 
 settings:
   react:
     version: '16'
-    
+
+"rules": {
+  "simple-import-sort/imports": "error",
+  "simple-import-sort/exports": "error"
+}
