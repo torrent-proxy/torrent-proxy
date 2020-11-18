@@ -1,5 +1,4 @@
 import * as React from "react";
-
 import {files} from "../../mocks/files";
 import File from "../file/file.component";
 

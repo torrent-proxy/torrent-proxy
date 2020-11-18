@@ -12,13 +12,17 @@ parserOptions:
   ecmaVersion: 6
   sourceType: module
 
-plugins: ['react', 'simple-import-sort']
+plugins: ['react', 'import']
 
 settings:
   react:
     version: '16'
 
 "rules": {
-  "simple-import-sort/imports": "error",
-  "simple-import-sort/exports": "error"
+  "import/order": [ "error", {
+    "alphabetize": {
+      order: 'asc',
+      caseInsensitive: true
+    }
+  }]
 }
