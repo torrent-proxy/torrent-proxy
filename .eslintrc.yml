@@ -24,5 +24,6 @@ settings:
       order: 'asc',
       caseInsensitive: true
     }
-  }]
+  }],
+  "import/newline-after-import": "error"
 }

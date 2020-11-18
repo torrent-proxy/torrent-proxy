@@ -4,7 +4,6 @@ import Header from "../header/header.component";
 import SearchBox from "../search-box/search-box.component";
 import SearchResults from "../search-results/search-results.component";
 
-
 const App: React.FunctionComponent = () => {
   const onDownloadButtonClick = () => {};
   const onDownloadButtonHover = () => {};

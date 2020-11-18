@@ -3,7 +3,6 @@ import {files} from "../../mocks/files";
 import File from "../file/file.component";
 
 const SearchResults: React.FunctionComponent = () => {
-
   return (
     <React.Fragment>
       <table className="search-results__table table">

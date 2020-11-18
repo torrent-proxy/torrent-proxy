@@ -2,7 +2,6 @@ import * as React from "react";
 import ColorTheme from "../color-theme/color-theme.component";
 import Navigation from "../navigation/navigation.component";
 
-
 const Header: React.FunctionComponent = () => {
   return (
     <React.Fragment>
