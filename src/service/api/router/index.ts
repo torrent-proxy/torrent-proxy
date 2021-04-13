@@ -2,6 +2,7 @@ import IProxy from '../../external-api/i-proxy';
 import TorrentProxyServer from '../../loader';
 import load from './routes/load';
 import popcornTimeRoute from './routes/popcorn-time';
+import search from './routes/search';
 import rnd from './routes/rnd';
 import rutor from './routes/rutor';
 
