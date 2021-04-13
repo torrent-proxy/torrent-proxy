@@ -13,8 +13,7 @@ export default class API extends EventEmitter {
 		super();
 
 		this.app = express();
-		console.log(__dirname + '/../../../static');
-		this.app.use('/static', express.static(__dirname + '/../../../../static'));
+		this.app.use('/example', express.static(__dirname + '/../../../../example'));
 		this.config = config;
 		this.routes = new Routes(this.app, deps.torrentProxy, deps.popcornTimeApi);
 
