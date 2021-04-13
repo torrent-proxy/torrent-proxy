@@ -20,5 +20,9 @@ export default class Router {
 		expressApp.get('/getMetadata/:magnet', (incomingMessage, res) => rnd().getMetadata(incomingMessage, res));
 		expressApp.get('/download/:magnet/:filePath', (incomingMessage, res) => rnd().download(incomingMessage, res));
 		expressApp.get('/rnd3/', (incomingMessage, res) => rnd().get3(incomingMessage, res));
+
+		expressApp.get(`/rutor/categories/`, (incomingMessage, res) => rutor().getCategories(incomingMessage, res))
+		expressApp.get(`/rutor/tag/*`, (incomingMessage, res) => rutor().getCategories(incomingMessage, res))
+		expressApp.get(`/rutor/search/:rr`, (incomingMessage, res) => rutor().search(incomingMessage, res))
 	};
 };
