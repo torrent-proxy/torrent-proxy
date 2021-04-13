@@ -3,7 +3,7 @@ import TorrentProxyServer from '../../loader';
 import load from './routes/load';
 import popcornTimeRoute from './routes/popcorn-time';
 import rnd from './routes/rnd';
-import search from './routes/search';
+import rutor from './routes/rutor';
 
 export default class Router {
 	constructor(expressApp: any, torrentProxy: TorrentProxyServer, popcornTimeApi: IProxy) {
