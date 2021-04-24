@@ -20,9 +20,7 @@
     "bt-stream": "github:torrent-proxy/bt-stream#master",
     "express": "^4.16.2",
     "jsdom": "16.5.3",
-    "node-fetch": "^2.6.1",
-    "torrent-stream": "^1.0.3",
-    "tracker-proxy": "git+ssh://git@github.com:reeFridge/tracker-proxy.git#develop"
+    "node-fetch": "^2.6.1"
   },
   "author": "",
   "license": "MIT",
