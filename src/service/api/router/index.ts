@@ -1,7 +1,7 @@
 import IProxy from '../../external-api/i-proxy';
 import popcornTimeRoute from './routes/popcorn-time';
 import rnd from './routes/rnd';
-import rutor from './routes/rutor';
+import {router as rutorRouter} from '../routes/rutor';
 
 export default class Router {
 	constructor(expressApp: any, popcornTimeApi: IProxy) {
@@ -14,8 +14,6 @@ export default class Router {
 		expressApp.get('/getMetadata/:magnet', (incomingMessage, res) => rnd().getMetadata(incomingMessage, res));
 		expressApp.get('/download/:magnet/:filePath', (incomingMessage, res) => rnd().download(incomingMessage, res));
 
-		expressApp.get(`/rutor/categories/`, (incomingMessage, res) => rutor().getCategories(incomingMessage, res))
-		expressApp.get(`/rutor/tag/*`, (incomingMessage, res) => rutor().getCategories(incomingMessage, res))
-		expressApp.get(`/rutor/search/:rr`, (incomingMessage, res) => rutor().search(incomingMessage, res))
+		expressApp.use('/rutor', rutorRouter);
 	};
 };
