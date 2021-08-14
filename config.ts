@@ -1,7 +1,7 @@
 export default {
 	api: {
 		ip: 'localhost',
-		port: 8811
+		port: 8822
 	},
 	torrentServer: {
 		ip: 'localhost',
