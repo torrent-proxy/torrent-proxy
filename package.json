@@ -21,7 +21,8 @@
     "express": "^4.16.2",
     "jsdom": "16.5.3",
     "node-fetch": "^2.6.1",
-    "request": "2.88.2"
+    "request": "2.88.2",
+    "torrent-proxy": "git+ssh://git@github.com/torrent-proxy/web-app.git"
   },
   "author": "",
   "license": "MIT",
