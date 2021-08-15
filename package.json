@@ -11,7 +11,7 @@
     "start": "webpack-dev-server",
     "test": "npm run lint && npm run test.jest",
     "test.jest": "jest",
-    "postinstall": "npm run build"
+    "postinstall": "npm i && npm run build"
   },
   "devDependencies": {
     "@babel/core": "7.10.2",
