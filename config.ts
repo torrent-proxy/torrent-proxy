@@ -1,11 +1,7 @@
 export default {
 	api: {
 		ip: 'localhost',
-		port: 3000
-	},
-	torrentServer: {
-		ip: 'localhost',
-		port: 8888
+		port: 8811
 	},
 	externalApi: {
 		popcorn: {
