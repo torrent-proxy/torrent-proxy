@@ -10,8 +10,7 @@
     "lint.ts": "eslint --config .eslintrc-ts.yml --ext .tsx src/",
     "start": "webpack-dev-server",
     "test": "npm run lint && npm run test.jest",
-    "test.jest": "jest",
-    "postinstall": "npm i && npm run build"
+    "test.jest": "jest"
   },
   "devDependencies": {
     "@babel/core": "7.10.2",
