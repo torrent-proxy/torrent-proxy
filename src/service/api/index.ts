@@ -23,7 +23,11 @@ export default class API extends EventEmitter {
 		this._init();
 	}
 
+	getApp() {
+		return this.app;
+	}
+
 	private _init() {
-		this.app.listen(this.config.port, () => console.log(`Server started on ${this.config.port} port`))
+		this.app.listen(this.config.port, () => console.log(`Server started on ${this.config.port} port`));
 	}
 };
