@@ -12,6 +12,10 @@ const work = (hash, onclick) => {
 	return fetch(`/getMetadata/${hash}`)
 		.then((response) => response.json())
 		.then((response) => {
+			// then((response) => response.body)
+			// 	.then((response) => {
+			// 		const r = response.getReader();
+			// 		return r.read()
 			const files = response['files'];
 			return createList(files, onclick);
 		})

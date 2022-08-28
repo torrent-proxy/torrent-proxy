@@ -10,10 +10,10 @@ export default class Router {
 			res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 			next();
 		});
-		expressApp.get('/popcorn/*', (incomingMessage, res) => popcornTimeRoute(popcornTimeApi).get(incomingMessage, res));
-		expressApp.get('/getMetadata/:magnet', (incomingMessage, res) => rnd().getMetadata(incomingMessage, res));
-		expressApp.get('/download/:magnet/:filePath', (incomingMessage, res) => rnd().download(incomingMessage, res));
+		expressApp.get('api/popcorn/*', (incomingMessage, res) => popcornTimeRoute(popcornTimeApi).get(incomingMessage, res));
+		expressApp.get('api/getMetadata/:magnet', (incomingMessage, res) => rnd().getMetadata(incomingMessage, res));
+		expressApp.get('api/download/:magnet/:filePath', (incomingMessage, res) => rnd().download(incomingMessage, res));
 
-		expressApp.use('/rutor', rutorRouter);
+		expressApp.use('api/rutor', rutorRouter);
 	};
 };
