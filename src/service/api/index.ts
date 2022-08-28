@@ -20,7 +20,7 @@ export default class API extends EventEmitter {
 		// TODO: Find method use on/off methods
 		// this.app.on('error', () => this._init());
 
-		// this._init();
+		this._init();
 	}
 
 	getApp() {
