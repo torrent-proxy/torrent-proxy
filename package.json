@@ -17,7 +17,7 @@
     "build": "cd web-app && npm run build && cd - && tsc",
     "watch": "npm run prebuild && tsc-watch --onSuccess \"npm run start\" --onFailure \"echo Beep! Compilation Failed\"",
     "prestart": "npm run build",
-    "start": "node ./lib/src/"
+    "start": "node index.js"
   },
   "dependencies": {
     "bt-stream": "github:torrent-proxy/bt-stream#master",
