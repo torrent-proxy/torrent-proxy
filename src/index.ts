@@ -6,6 +6,13 @@ import config from '../config';
 const popcornTimeTransport = new Transport(config.externalApi.popcorn.url);
 const popcornTimeApi = new PopcornTimeApi(popcornTimeTransport);
 
-new API(config.api, {
+const api = new API(config.api, {
 	popcornTimeApi: popcornTimeApi
 });
+
+// @ts-ignore
+const app = api.getApp();
+
+export {
+	app,
+};
