@@ -10,8 +10,7 @@ const api = new API(config.api, {
 	popcornTimeApi: popcornTimeApi
 });
 
-// @ts-ignore
-const app = api.getApp();
+const app: any = api.getApp();
 
 export {
 	app,
