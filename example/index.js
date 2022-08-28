@@ -9,9 +9,13 @@
 const DEFAULT_HASH = `db2a2ac4b3db1b4fe0a76780124ca1e7404d5015`;
 
 const work = (hash, onclick) => {
-	return fetch(`/getMetadata/${hash}`)
+	return fetch(`/api/getMetadata/${hash}`)
 		.then((response) => response.json())
 		.then((response) => {
+			// then((response) => response.body)
+			// 	.then((response) => {
+			// 		const r = response.getReader();
+			// 		return r.read()
 			const files = response['files'];
 			return createList(files, onclick);
 		})
@@ -39,6 +43,7 @@ const createList = (files, onclick) => {
 const loadButton = document.querySelector(`#download-file`);
 const videoButton = document.querySelector(`#watch-video`);
 const hashInput = document.querySelector(`#hash-input`);
+hashInput.value = DEFAULT_HASH;
 
 setTimeout(() => loadButton.click(), 1000);
 
@@ -50,7 +55,7 @@ loadButton.onclick = function () {
 
 		const anchor = document.createElement('a');
 
-		anchor.href = `/download/${magnet}/${filePath}`;
+		anchor.href = `/api/download/${magnet}/${filePath}`;
 		anchor.target = '_blank';
 		anchor.download = file.name;
 
@@ -67,7 +72,7 @@ videoButton.onclick = function () {
 		video.style.height = `300px`;
 		video.style.width = `300px`;
 		video.setAttribute(`controls`, `true`);
-		video.innerHTML = `<source src="${`/download/${HASH}/${filePath}`}" type="video/mp4">`
+		video.innerHTML = `<source src="${`/api/download/${HASH}/${filePath}`}" type="video/mp4">`
 
 		document.body.appendChild(video);
 

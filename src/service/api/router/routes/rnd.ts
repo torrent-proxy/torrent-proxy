@@ -4,7 +4,7 @@ import {BTStream, createBTStream} from 'bt-stream'
 export default () => {
 	return {
 		getMetadata: (incomingMessage, res) => {
-			const magnet = decodeURIComponent(incomingMessage.originalUrl.substr('/getMetadata/'.length));
+			const {magnet} = incomingMessage.params;
 			console.log(`getMetadata`, {url: incomingMessage.originalUrl});
 			console.log(`getMetadata`, {magnet});
 			const btStream = createBTStream({dhtPort: Math.floor(Math.random() * 10000 + 1000), hash: magnet});
