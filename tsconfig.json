@@ -6,7 +6,9 @@
     "diagnostics": true,
     "sourceMap": true,
     "outDir": "lib",
-    "declaration": true
+    "declaration": true,
+    "jsx": "react",
+    "allowSyntheticDefaultImports": true
   },
   "include": [
     "src/*"

@@ -22,8 +22,10 @@
   "dependencies": {
     "bt-stream": "github:torrent-proxy/bt-stream#master",
     "express": "^4.16.2",
+    "ink": "^3.2.0",
     "jsdom": "16.5.3",
     "node-fetch": "^2.6.1",
+    "range-parser": "1.2.1",
     "request": "2.88.2"
   },
   "author": "",
