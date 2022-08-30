@@ -99,7 +99,7 @@ export default () => {
 			return btStream.getMetaData(magnet)
 				.then((torrent) => {
 					console.log(`proxy:download:after_getMetaData`);
-					const stream = btStream.downloadFileByPath({torrent, filePath, offset: 0});
+					const stream = btStream.downloadFileByPath({torrent, filePath, from: 0});
 					stream.pipe(res);
 				});
 		},
@@ -191,6 +191,8 @@ export default () => {
 		d: async (incomingMessage, res) => {
 			const {filePath, magnet} = incomingMessage.params;
 			console.log(`============================================`)
+			// TODO: Почему-то эта строка логируется нескольк раз, но большие логи пишутся только один раз. Возможно ranges дальше undefined
+			// TODO: А, это происходит потому что await долгий
 			console.log("!!headers.range", incomingMessage.headers.range)
 			// stream = fs.createReadStream(`${__dirname}/../../../../../../example/bbb.mp4`);
 			// const stat = await promisify(fs.stat)(`${__dirname}/../../../../../../example/bbb.mp4`);
@@ -207,15 +209,15 @@ export default () => {
 
 			console.log("!!len", size)
 
-			const ranges = parseRange(size, incomingMessage.headers.range, {
+			const ranges = parseRange(size, incomingMessage.headers.range || ``, {
 				combine: true
 			})[0];
 
+			console.log(11111111111111111, {ranges})
 			if (ranges) {
-				console.log(11111111111111111, {ranges})
 				const length = ranges.end - ranges.start + 1;
 				const range = contentRange('bytes', length, ranges);
-				console.log("!!, range", range)
+				// console.log("!!, range", range)
 
 				res.setHeader('Content-Range', range);
 				res.setHeader('Content-Length', size);
@@ -236,7 +238,7 @@ export default () => {
 			const stream = btStream.downloadFileByPath({
 				torrent,
 				filePath,
-				offset,
+				from: offset,
 				to,
 			});
 
